@@ -2,7 +2,7 @@ import styles from './App.module.css';
 
 import '@mantine/core/styles.css';
 
-import { Accordion, Alert, List, Text, Title } from '@mantine/core';
+import { Accordion, Alert, List, Space, Text, Title } from '@mantine/core';
 import { PersonSimpleBikeIcon } from '@phosphor-icons/react';
 import {
   Club9000Saturday,
@@ -16,13 +16,14 @@ import {
 } from './pelotons/ScheldePeloton';
 import { VDH } from './pelotons/VDH';
 import { VPeloton } from './pelotons/VPeloton';
-import { Facebook, Strava, Website, WhatsApp } from './socials';
+import { Facebook, Github, Strava, Website, WhatsApp } from './socials';
 import { getBelgiumDay } from './utils';
 
 const App = () => {
   return (
     <div className={styles.main}>
       <Title order={1}>Regular Ghent Pelotons / Group rides</Title>
+      <Space h="lg" />
       <Alert
         variant="light"
         color="blue"
@@ -42,6 +43,7 @@ const App = () => {
           cyclist, ...).
         </Text>
       </Alert>
+      <Space h="lg" />
       <Accordion defaultValue={getBelgiumDay()}>
         <Accordion.Item value="Monday">
           <Accordion.Control>Monday</Accordion.Control>
@@ -125,6 +127,17 @@ const App = () => {
           </Accordion.Panel>
         </Accordion.Item>
       </Accordion>
+      <Space h="lg" />
+      <Text>
+        If anything is incorrect, or you have more data/group rides to
+        contribute, feel free to open an issue on{' '}
+        <Github
+          href="https://github.com/Alexis-D/gentse-pelotons/issues"
+          text="Alexis-D/gentse-peloton"
+        />
+        .
+      </Text>
+      <Space h="lg" />
     </div>
   );
 };

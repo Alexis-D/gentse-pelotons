@@ -1,6 +1,7 @@
 import { Anchor, Badge, type MantineColor } from '@mantine/core';
 import {
   FacebookLogoIcon,
+  GithubLogoIcon,
   GlobeIcon,
   InstagramLogoIcon,
   MapPinIcon,
@@ -54,6 +55,9 @@ export const Instagram = ({ href }: Pick<ISocialProps, 'href'>) => (
 );
 export const Website = ({ href }: Pick<ISocialProps, 'href'>) => (
   <Social text="Website" color="cyan" href={href} icon={<GlobeIcon />} />
+);
+export const Github = ({ href, text }: Pick<ISocialProps, 'href' | 'text'>) => (
+  <Social text={text} color="gray" href={href} icon={<GithubLogoIcon />} />
 );
 export const GPXSocial = ({
   href,
