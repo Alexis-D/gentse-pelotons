@@ -4,6 +4,7 @@ import '@mantine/core/styles.css';
 
 import { Accordion, Alert, List, Space, Text, Title } from '@mantine/core';
 import { PersonSimpleBikeIcon } from '@phosphor-icons/react';
+import { useState } from 'react';
 import {
   Club9000Saturday,
   Club9000Thursday,
@@ -20,29 +21,34 @@ import { Facebook, Github, Strava, Website, WhatsApp } from './socials';
 import { getBelgiumDay } from './utils';
 
 const App = () => {
+  const [opened, setOpened] = useState(true);
+
   return (
     <div className={styles.main}>
       <Title order={1}>Regular Ghent Pelotons / Group rides</Title>
       <Space h="lg" />
-      <Alert
-        variant="light"
-        color="blue"
-        title="Intro"
-        icon={<PersonSimpleBikeIcon />}
-        withCloseButton
-      >
-        <Text>
-          Just moved to Ghent? Travelling for a bit? If you're looking for a
-          group ride, this page tries to list the reliable rides that you can
-          easily join any day of the week: no club membership needed, show up at
-          the right time and place and ride along.
-        </Text>
-        <Text>
-          Pro-tip: 'tegen' (against) when there's oncoming traffic, 'voor'
-          (in-front) when there's something to overtake (pedestrian, slower
-          cyclist, ...).
-        </Text>
-      </Alert>
+      {opened && (
+        <Alert
+          variant="light"
+          color="blue"
+          title="Intro"
+          icon={<PersonSimpleBikeIcon />}
+          withCloseButton
+          onClose={() => setOpened(false)}
+        >
+          <Text>
+            Just moved to Ghent? Travelling for a bit? If you're looking for a
+            group ride, this page tries to list the reliable rides that you can
+            easily join any day of the week: no club membership needed, show up
+            at the right time and place and ride along.
+          </Text>
+          <Text>
+            Pro-tip: 'tegen' (against) when there's oncoming traffic, 'voor'
+            (in-front) when there's something to overtake (pedestrian, slower
+            cyclist, ...).
+          </Text>
+        </Alert>
+      )}
       <Space h="lg" />
       <Accordion defaultValue={getBelgiumDay()}>
         <Accordion.Item value="Monday">
