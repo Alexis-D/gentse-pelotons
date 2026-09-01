@@ -1,6 +1,16 @@
-import { Alert, Anchor, Badge, Card, Group, Image, Text } from '@mantine/core';
+import {
+  Alert,
+  Anchor,
+  Badge,
+  Card,
+  Group,
+  Image,
+  List,
+  Text,
+} from '@mantine/core';
 import { ClockIcon, MapPinIcon, WarningIcon } from '@phosphor-icons/react';
 import type { ReactNode } from 'react';
+import React from 'react';
 import {
   Facebook,
   GPXSocial,
@@ -60,7 +70,7 @@ export const SimplePeloton = ({
           sources for details atm (e.g. GPX). This ride may not actually exist.
         </Alert>
       )}
-      <Text>{starts}</Text>
+      {starts}
       <Text>
         Indicative speed:{' '}
         <Text span fw={800}>
@@ -122,7 +132,16 @@ interface IStartsProps {
   children: ReactNode;
 }
 
-export const Starts = ({ children }: IStartsProps) => <>{children}</>;
+export const Starts = ({ children }: IStartsProps) =>
+  React.Children.count(children) === 1 ? (
+    children
+  ) : (
+    <List>
+      {React.Children.map(children, (child) => (
+        <List.Item>{child}</List.Item>
+      ))}
+    </List>
+  );
 
 interface IStartProps {
   time: string;

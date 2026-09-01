@@ -2,7 +2,15 @@ import styles from './App.module.css';
 
 import '@mantine/core/styles.css';
 
-import { Accordion, Alert, List, Space, Text, Title } from '@mantine/core';
+import {
+  Accordion,
+  Alert,
+  Group,
+  List,
+  Space,
+  Text,
+  Title,
+} from '@mantine/core';
 import { PersonSimpleBikeIcon } from '@phosphor-icons/react';
 import { useState } from 'react';
 import {
@@ -136,15 +144,17 @@ const App = () => {
         </Accordion.Item>
       </Accordion>
       <Space h="lg" />
-      <Text>
-        If anything is incorrect, or you have more data/group rides to
-        contribute, feel free to open an issue on{' '}
+      <Group gap="xs">
+        <Text>
+          If anything is incorrect, or you have more data/group rides to
+          contribute, feel free to open an issue on{' '}
+        </Text>
         <Github
           href="https://github.com/Alexis-D/gentse-pelotons/issues"
           text="Alexis-D/gentse-peloton"
         />
-        .
-      </Text>
+        <Text>.</Text>
+      </Group>
       <Space h="lg" />
     </div>
   );
