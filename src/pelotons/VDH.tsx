@@ -15,9 +15,9 @@ export const VDH = () => (
     name="VDH Boys aka Woensdag Toerdag"
     thumbnails={
       <Thumbnails>
-        <Thumbnail src="/vdh-safti.png" href={SAFTI} />
-        <Thumbnail src="/vdh-logo.jpg" href="https://wtctonneke.be/gpx-wtd/" />
-        <Thumbnail src="/vdh-melle.png" href={MELLE_KERK} />
+        <Thumbnail src="vdh-safti.png" href={SAFTI} />
+        <Thumbnail src="vdh-logo.jpg" href="https://wtctonneke.be/gpx-wtd/" />
+        <Thumbnail src="vdh-melle.png" href={MELLE_KERK} />
       </Thumbnails>
     }
     starts={

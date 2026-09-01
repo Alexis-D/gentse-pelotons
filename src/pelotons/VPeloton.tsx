@@ -14,8 +14,8 @@ export const VPeloton = () => (
     name="VP aka Vinderhoute Peloton"
     thumbnails={
       <Thumbnails>
-        <Thumbnail src="/vp.png" href={VP_START} />
-        <Thumbnail src="/bierstalbrug.jpg" href={VP_START} />
+        <Thumbnail src="vp.png" href={VP_START} />
+        <Thumbnail src="bierstalbrug.jpg" href={VP_START} />
       </Thumbnails>
     }
     starts={
@@ -27,7 +27,7 @@ export const VPeloton = () => (
         />
       </Starts>
     }
-    gpx={<GPX text="GPX" href="/vp.gpx" />}
+    gpx={<GPX text="GPX" href="vp.gpx" />}
     drop
     speed="35+kph"
   />

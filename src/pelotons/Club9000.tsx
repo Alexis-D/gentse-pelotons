@@ -22,8 +22,8 @@ const Club9000 = ({
     name="Club 9000 / Kaffee Allez"
     thumbnails={
       <Thumbnails>
-        <Thumbnail src="/club9000.png" href={CLUB9000_START} />
-        <Thumbnail src="/club9000-logo.webp" href="https://www.club9000.be/" />
+        <Thumbnail src="club9000.png" href={CLUB9000_START} />
+        <Thumbnail src="club9000-logo.webp" href="https://www.club9000.be/" />
       </Thumbnails>
     }
     starts={starts}

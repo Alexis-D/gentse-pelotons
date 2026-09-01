@@ -8,4 +8,8 @@ export default defineConfig({
     favicon: './public/favicon.svg',
   },
   plugins: [pluginReact()],
+  output: {
+    // 🛠️ Forces relative path handling
+    assetPrefix: './',
+  },
 });

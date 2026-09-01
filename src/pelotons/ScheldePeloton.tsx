@@ -37,7 +37,7 @@ export const ScheldePelotonWeekdays = () => (
   <ScheldePeloton
     thumbnails={
       <Thumbnails>
-        <Thumbnail src="/sp.png" href={SP_START} />
+        <Thumbnail src="sp.png" href={SP_START} />
       </Thumbnails>
     }
     starts={
@@ -49,7 +49,7 @@ export const ScheldePelotonWeekdays = () => (
         />
       </Starts>
     }
-    gpx={<GPX text="GPX" href="/sp.gpx" />}
+    gpx={<GPX text="GPX" href="sp.gpx" />}
   />
 );
 
@@ -57,7 +57,7 @@ export const ScheldePelotonWednesday = () => (
   <ScheldePeloton
     thumbnails={
       <Thumbnails>
-        <Thumbnail src="/sp-ww.png" href={SP_WW_START} />
+        <Thumbnail src="sp-ww.png" href={SP_WW_START} />
       </Thumbnails>
     }
     starts={
@@ -79,7 +79,7 @@ export const ScheldePelotonWeekend = () => (
   <ScheldePeloton
     thumbnails={
       <Thumbnails>
-        <Thumbnail src="/sp.png" href={SP_START} />
+        <Thumbnail src="sp.png" href={SP_START} />
       </Thumbnails>
     }
     starts={
