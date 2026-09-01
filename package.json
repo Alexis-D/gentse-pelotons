@@ -1,0 +1,36 @@
+{
+  "name": "gentse-pelotons",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "rsbuild build",
+    "check": "biome check --write",
+    "check-unsafe": "biome check --write --unsafe",
+    "dev": "rsbuild",
+    "format": "biome format --write",
+    "preview": "rsbuild preview",
+    "prek-init": "prek init"
+  },
+  "dependencies": {
+    "@mantine/core": "^9.6.0",
+    "@mantine/hooks": "^9.6.0",
+    "@phosphor-icons/react": "^2.1.10",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.8",
+    "@j178/prek": "^0.5.1",
+    "@rsbuild/core": "^2.2.1",
+    "@rsbuild/plugin-react": "^2.1.0",
+    "@types/leaflet": "^1.9.22",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "postcss": "^8.5.26",
+    "postcss-preset-mantine": "^1.18.0",
+    "postcss-simple-vars": "^7.0.1",
+    "typescript": "^6.0.3"
+  }
+}
