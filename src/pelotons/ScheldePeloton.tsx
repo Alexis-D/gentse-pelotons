@@ -1,3 +1,5 @@
+import { MapMarkersThumbnail, MapThumbnail } from '../ui/maps';
+import { Thumbnails } from '../ui/Thumbnails';
 import {
   GPX,
   type ISimplePeloton,
@@ -5,7 +7,6 @@ import {
   Start,
   Starts,
 } from './SimplePeloton';
-import { MapMarkersThumbnail, MapThumbnail, Thumbnails } from './Thumbnails';
 
 const SP_START = 'https://maps.app.goo.gl/tXo88zK39Fz3JzoX7';
 const SP_WW_START = 'https://maps.app.goo.gl/ckNdpvgCKH7cAtgi6';

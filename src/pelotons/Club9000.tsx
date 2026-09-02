@@ -1,3 +1,5 @@
+import { MapMarkersThumbnail } from '../ui/maps';
+import { Thumbnail, Thumbnails } from '../ui/Thumbnails';
 import {
   GPX,
   type ISimplePeloton,
@@ -5,7 +7,6 @@ import {
   Start,
   Starts,
 } from './SimplePeloton';
-import { MapMarkersThumbnail, Thumbnail, Thumbnails } from './Thumbnails';
 
 const CLUB9000_START = 'https://maps.app.goo.gl/MFcTCUEPmeGj15Gy7';
 <Starts>

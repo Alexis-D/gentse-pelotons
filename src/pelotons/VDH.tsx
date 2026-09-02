@@ -1,5 +1,6 @@
+import { MapMarkersThumbnail } from '../ui/maps';
+import { Thumbnail, Thumbnails } from '../ui/Thumbnails';
 import { GPX, SimplePeloton, Start, Starts } from './SimplePeloton';
-import { MapMarkersThumbnail, Thumbnail, Thumbnails } from './Thumbnails';
 
 const SAFTI = 'https://maps.app.goo.gl/iBCAvPxkjpd79PA87';
 const MELLE_KERK = 'https://maps.app.goo.gl/n1mt3BqjMEsUDVaj6';

@@ -1,8 +1,8 @@
-import { ActionIcon, Anchor, Card, Group, Image, Popover } from '@mantine/core';
+import { ActionIcon, Anchor, Popover } from '@mantine/core';
 import { MapPinIcon } from '@phosphor-icons/react';
 import { gpx as toGpx } from '@tmcw/togeojson';
 import type { FeatureCollection, LineString } from 'geojson';
-import { type ReactNode, useEffect } from 'react';
+import { useEffect } from 'react';
 import {
   Layer,
   Map as MapLibreMap,
@@ -11,38 +11,19 @@ import {
 } from 'react-map-gl/maplibre';
 import { useLocalStorage } from 'usehooks-ts';
 
-interface IThumbnailsProps {
-  children: ReactNode;
-}
-
-export const Thumbnails = ({ children }: IThumbnailsProps) =>
-  children && (
-    <Card.Section>
-      <Group gap={0} wrap="nowrap">
-        {children}
-      </Group>
-    </Card.Section>
-  );
-
-interface IThumbnailProps {
-  src: string;
-  href: string;
-}
-
-export const Thumbnail = ({ src, href }: IThumbnailProps) => (
-  <a href={href} style={{ display: 'block', width: '100%' }}>
-    <Image src={src} height={160} />
-  </a>
-);
-
-interface IMarkerProps {
+interface IMarkerWithPopoverLinkProps {
   lat: number;
   lon: number;
   label: string;
   href: string;
 }
 
-const MarkerWithDirections = ({ lat, lon, label, href }: IMarkerProps) => (
+const MarkerWithPopoverLink = ({
+  lat,
+  lon,
+  label,
+  href,
+}: IMarkerWithPopoverLinkProps) => (
   <Marker latitude={lat} longitude={lon}>
     <Popover width={200} position="bottom" withArrow shadow="md">
       <Popover.Target>
@@ -120,7 +101,7 @@ export const MapThumbnail = ({
         </Source>
       )}
       {firstPoint && (
-        <MarkerWithDirections
+        <MarkerWithPopoverLink
           lat={firstPoint[1]}
           lon={firstPoint[0]}
           href={href}
@@ -131,15 +112,8 @@ export const MapThumbnail = ({
   );
 };
 
-interface ILatLon {
-  lat: number;
-  lon: number;
-  label: string;
-  href: string;
-}
-
 interface IMapMarkersThumbnailProps {
-  markers: ILatLon[];
+  markers: IMarkerWithPopoverLinkProps[];
 }
 
 export const MapMarkersThumbnail = ({ markers }: IMapMarkersThumbnailProps) => {
@@ -165,7 +139,7 @@ export const MapMarkersThumbnail = ({ markers }: IMapMarkersThumbnailProps) => {
       attributionControl={false}
     >
       {markers.map((m) => (
-        <MarkerWithDirections key={m.label} {...m} />
+        <MarkerWithPopoverLink key={m.label} {...m} />
       ))}
     </MapLibreMap>
   );

@@ -20,7 +20,7 @@ import {
   Strava,
   Website,
   WhatsApp,
-} from '../socials';
+} from '../ui/socials';
 
 export interface ISimplePeloton {
   name: string;

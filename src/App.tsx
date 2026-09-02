@@ -2,8 +2,16 @@ import styles from './App.module.css';
 
 import '@mantine/core/styles.css';
 
-import { Accordion, Alert, List, Space, Text, Title } from '@mantine/core';
-import { PersonSimpleBikeIcon } from '@phosphor-icons/react';
+import {
+  Accordion,
+  Alert,
+  Group,
+  List,
+  Space,
+  Text,
+  Title,
+} from '@mantine/core';
+import { ArrowFatRightIcon, PersonSimpleBikeIcon } from '@phosphor-icons/react';
 import { useLocalStorage } from 'usehooks-ts';
 import {
   Club9000Saturday,
@@ -17,11 +25,12 @@ import {
 } from './pelotons/ScheldePeloton';
 import { VDH } from './pelotons/VDH';
 import { VPeloton } from './pelotons/VPeloton';
-import { Facebook, Github, Strava, Website } from './socials';
+import { Facebook, Github, Strava, Website } from './ui/socials';
 import { getBelgiumDay } from './utils';
 
 const App = () => {
   const [opened, setOpened] = useLocalStorage('info-box-opened', true);
+  const today = getBelgiumDay();
 
   return (
     <div className={styles.main}>
@@ -53,23 +62,33 @@ const App = () => {
         </>
       )}
       {/* do not rely on keepMountedMode=activity as it causes issues when changing visibility */}
-      <Accordion defaultValue={getBelgiumDay()} keepMountedMode="display-none">
+      <Accordion defaultValue={today} keepMountedMode="display-none">
         <Accordion.Item value="Monday">
-          <Accordion.Control>Monday</Accordion.Control>
+          <Accordion.Control icon={today === 'Monday' && <ArrowFatRightIcon />}>
+            Monday
+          </Accordion.Control>
           <Accordion.Panel>
             <ScheldePelotonWeekdays key="a" />
             <VPeloton />
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item value="Tuesday">
-          <Accordion.Control>Tuesday</Accordion.Control>
+          <Accordion.Control
+            icon={today === 'Tuesday' && <ArrowFatRightIcon />}
+          >
+            Tuesday
+          </Accordion.Control>
           <Accordion.Panel>
             <ScheldePelotonWeekdays key="b" />
             <VPeloton />
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item value="Wednesday">
-          <Accordion.Control>Wednesday</Accordion.Control>
+          <Accordion.Control
+            icon={today === 'Wednesday' && <ArrowFatRightIcon />}
+          >
+            Wednesday
+          </Accordion.Control>
           <Accordion.Panel>
             <Club9000Wednesday />
             <ScheldePelotonWeekdays />
@@ -79,7 +98,11 @@ const App = () => {
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item value="Thursday">
-          <Accordion.Control>Thursday</Accordion.Control>
+          <Accordion.Control
+            icon={today === 'Thursday' && <ArrowFatRightIcon />}
+          >
+            Thursday
+          </Accordion.Control>
           <Accordion.Panel>
             <ScheldePelotonWeekdays />
             <VPeloton />
@@ -87,14 +110,20 @@ const App = () => {
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item value="Friday">
-          <Accordion.Control>Friday</Accordion.Control>
+          <Accordion.Control icon={today === 'Friday' && <ArrowFatRightIcon />}>
+            Friday
+          </Accordion.Control>
           <Accordion.Panel>
             <ScheldePelotonWeekdays />
             <VPeloton />
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item value="Saturday">
-          <Accordion.Control>Saturday</Accordion.Control>
+          <Accordion.Control
+            icon={today === 'Saturday' && <ArrowFatRightIcon />}
+          >
+            Saturday
+          </Accordion.Control>
           <Accordion.Panel>
             <ScheldePelotonWeekend />
             <VPeloton />
@@ -102,7 +131,9 @@ const App = () => {
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item value="Sunday">
-          <Accordion.Control>Sunday</Accordion.Control>
+          <Accordion.Control icon={today === 'Sunday' && <ArrowFatRightIcon />}>
+            Sunday
+          </Accordion.Control>
           <Accordion.Panel>
             <ScheldePelotonWeekend />
             <VPeloton />
@@ -119,18 +150,23 @@ const App = () => {
               </List.Item>
               <List.Item>SPB: A slower Scheldepeloton morning ride.</List.Item>
               <List.Item>
-                Pédaleurs de Flandres aka PdF: see{' '}
-                <Strava href="https://www.strava.com/clubs/445371" />,{' '}
-                <Facebook href="https://www.facebook.com/pedaleurdeflandrescc" />{' '}
-                and{' '}
-                <Website href="https://www.pedaleurdeflandres.be/pages/cycling-community" />
-                .
+                <Group gap="0.3rem">
+                  Pédaleurs de Flandres aka PdF: see
+                  <Strava href="https://www.strava.com/clubs/445371" />,
+                  <Facebook href="https://www.facebook.com/pedaleurdeflandrescc" />
+                  and
+                  <Website href="https://www.pedaleurdeflandres.be/pages/cycling-community" />
+                  .
+                </Group>
               </List.Item>
               <List.Item>
-                VELOmoaten: see{' '}
-                <Strava href="https://www.strava.com/clubs/velomoaten-154436" />{' '}
-                and{' '}
-                <Facebook href="https://www.facebook.com/groups/VELOmoaten/" />.
+                <Group gap="0.3rem">
+                  VELOmoaten: see
+                  <Strava href="https://www.strava.com/clubs/velomoaten-154436" />
+                  and
+                  <Facebook href="https://www.facebook.com/groups/VELOmoaten/" />
+                  .
+                </Group>
               </List.Item>
             </List>
           </Accordion.Panel>

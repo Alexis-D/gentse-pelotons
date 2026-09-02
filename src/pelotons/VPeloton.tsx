@@ -1,5 +1,6 @@
+import { MapThumbnail } from '../ui/maps';
+import { Thumbnail, Thumbnails } from '../ui/Thumbnails';
 import { GPX, SimplePeloton, Start, Starts } from './SimplePeloton';
-import { MapThumbnail, Thumbnail, Thumbnails } from './Thumbnails';
 
 const VP_START = 'https://maps.app.goo.gl/aVgTHNEhphtysEV38';
 
