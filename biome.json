@@ -7,10 +7,10 @@
       }
     }
   },
-  "vcs": {
-    "enabled": true,
-    "clientKind": "git",
-    "useIgnoreFile": true
+  "css": {
+    "parser": {
+      "cssModules": true
+    }
   },
   "formatter": {
     "indentStyle": "space"
@@ -20,15 +20,21 @@
       "quoteStyle": "single"
     }
   },
-  "css": {
-    "parser": {
-      "cssModules": true
-    }
-  },
   "linter": {
     "enabled": true,
     "rules": {
+      "correctness": {
+        "noUnusedImports": {
+          "fix": "safe",
+          "level": "error"
+        }
+      },
       "preset": "recommended"
     }
+  },
+  "vcs": {
+    "clientKind": "git",
+    "enabled": true,
+    "useIgnoreFile": true
   }
 }
