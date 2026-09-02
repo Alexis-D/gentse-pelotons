@@ -1,11 +1,5 @@
-import {
-  GPX,
-  SimplePeloton,
-  Start,
-  Starts,
-  Thumbnail,
-  Thumbnails,
-} from './SimplePeloton';
+import { GPX, SimplePeloton, Start, Starts } from './SimplePeloton';
+import { MapThumbnail, Thumbnail, Thumbnails } from './Thumbnails';
 
 const VP_START = 'https://maps.app.goo.gl/aVgTHNEhphtysEV38';
 
@@ -14,7 +8,12 @@ export const VPeloton = () => (
     name="VP aka Vinderhoute Peloton"
     thumbnails={
       <Thumbnails>
-        <Thumbnail src="vp-tracks.png" href={VP_START} />
+        {/* lat/lon = Nevele, not Bierstalbrug */}
+        <MapThumbnail
+          geojson="vp.geojson"
+          lat={51.03243491123266}
+          lon={3.5513476908204686}
+        />
         <Thumbnail src="bierstalbrug.jpg" href={VP_START} />
       </Thumbnails>
     }

@@ -17,7 +17,7 @@ import {
 } from './pelotons/ScheldePeloton';
 import { VDH } from './pelotons/VDH';
 import { VPeloton } from './pelotons/VPeloton';
-import { Facebook, Github, Strava, Website, WhatsApp } from './socials';
+import { Facebook, Github, Strava, Website } from './socials';
 import { getBelgiumDay } from './utils';
 
 const App = () => {
@@ -56,15 +56,15 @@ const App = () => {
         <Accordion.Item value="Monday">
           <Accordion.Control>Monday</Accordion.Control>
           <Accordion.Panel>
-            <ScheldePelotonWeekdays />
-            <VPeloton />
+            <ScheldePelotonWeekdays key="a" />
+            {/* <VPeloton /> */}
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item value="Tuesday">
           <Accordion.Control>Tuesday</Accordion.Control>
           <Accordion.Panel>
-            <ScheldePelotonWeekdays />
-            <VPeloton />
+            <ScheldePelotonWeekdays key="b" />
+            {/* <VPeloton /> */}
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item value="Wednesday">
@@ -116,11 +116,7 @@ const App = () => {
               <List.Item>
                 VP2: A slower VPeloton, unsure about the details/regularity.
               </List.Item>
-              <List.Item>
-                SPB: A slower Scheldepeloton morning ride. See
-                <WhatsApp href="https://chat.whatsapp.com/GLD9sHkSzXaBSShUwHxz0V" />
-                .
-              </List.Item>
+              <List.Item>SPB: A slower Scheldepeloton morning ride.</List.Item>
               <List.Item>
                 Pédaleurs de Flandres aka PdF: see{' '}
                 <Strava href="https://www.strava.com/clubs/445371" />,{' '}

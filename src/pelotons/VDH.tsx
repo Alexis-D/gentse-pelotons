@@ -1,11 +1,5 @@
-import {
-  GPX,
-  SimplePeloton,
-  Start,
-  Starts,
-  Thumbnail,
-  Thumbnails,
-} from './SimplePeloton';
+import { GPX, SimplePeloton, Start, Starts } from './SimplePeloton';
+import { MapMarkersThumbnail, Thumbnail, Thumbnails } from './Thumbnails';
 
 const SAFTI = 'https://maps.app.goo.gl/iBCAvPxkjpd79PA87';
 const MELLE_KERK = 'https://maps.app.goo.gl/n1mt3BqjMEsUDVaj6';
@@ -15,9 +9,23 @@ export const VDH = () => (
     name="VDH Boys aka Woensdag Toerdag"
     thumbnails={
       <Thumbnails>
-        <Thumbnail src="vdh-safti.png" href={SAFTI} />
+        <MapMarkersThumbnail
+          markers={[
+            {
+              lat: 50.9946424715288,
+              lon: 3.8773670512136453,
+              label: 'Safti parking',
+              url: SAFTI,
+            },
+            {
+              lat: 51.004656599108785,
+              lon: 3.802856144580596,
+              label: 'Kerk Melle',
+              url: MELLE_KERK,
+            },
+          ]}
+        />
         <Thumbnail src="vdh-logo.jpg" href="https://wtctonneke.be/gpx-wtd/" />
-        <Thumbnail src="vdh-melle.png" href={MELLE_KERK} />
       </Thumbnails>
     }
     starts={

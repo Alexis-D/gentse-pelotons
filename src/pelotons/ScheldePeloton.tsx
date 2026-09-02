@@ -4,9 +4,8 @@ import {
   SimplePeloton,
   Start,
   Starts,
-  Thumbnail,
-  Thumbnails,
 } from './SimplePeloton';
+import { MapMarkersThumbnail, MapThumbnail, Thumbnails } from './Thumbnails';
 
 const SP_START = 'https://maps.app.goo.gl/tXo88zK39Fz3JzoX7';
 const SP_WW_START = 'https://maps.app.goo.gl/ckNdpvgCKH7cAtgi6';
@@ -31,7 +30,12 @@ export const ScheldePelotonWeekdays = () => (
   <ScheldePeloton
     thumbnails={
       <Thumbnails>
-        <Thumbnail src="sp-tracks.png" href={SP_START} />
+        {/* lat/lon = Gavere, not Zwijnaarde */}
+        <MapThumbnail
+          geojson="sp.geojson"
+          lat={50.9299510444054}
+          lon={3.6525768763541384}
+        />
       </Thumbnails>
     }
     starts={
@@ -54,7 +58,16 @@ export const ScheldePelotonWednesday = () => (
   <ScheldePeloton
     thumbnails={
       <Thumbnails>
-        <Thumbnail src="sp-ww.png" href={SP_WW_START} />
+        <MapMarkersThumbnail
+          markers={[
+            {
+              lat: 50.986505,
+              lon: 3.717936,
+              label: 'Wouter Weylandt monument',
+              url: SP_WW_START,
+            },
+          ]}
+        />
       </Thumbnails>
     }
     starts={
@@ -76,7 +89,12 @@ export const ScheldePelotonWeekend = () => (
   <ScheldePeloton
     thumbnails={
       <Thumbnails>
-        <Thumbnail src="sp.png" href={SP_START} />
+        {/* lat/lon = Gavere, not Zwijnaarde */}
+        <MapThumbnail
+          geojson="sp.geojson"
+          lat={50.9299510444054}
+          lon={3.6525768763541384}
+        />
       </Thumbnails>
     }
     starts={

@@ -5,7 +5,6 @@ import {
   Card,
   Group,
   Highlight,
-  Image,
   List,
   Space,
   Text,
@@ -117,30 +116,6 @@ export const SimplePeloton = ({
     </Card>
   );
 };
-
-interface IThumbnailsProps {
-  children: ReactNode;
-}
-
-export const Thumbnails = ({ children }: IThumbnailsProps) =>
-  children && (
-    <Card.Section>
-      <Group gap={0} wrap="nowrap">
-        {children}
-      </Group>
-    </Card.Section>
-  );
-
-interface IThumbnailProps {
-  src: string;
-  href: string;
-}
-
-export const Thumbnail = ({ src, href }: IThumbnailProps) => (
-  <a href={href} style={{ display: 'block', width: '100%' }}>
-    <Image src={src} height={160} />
-  </a>
-);
 
 interface IStartsProps {
   children: ReactNode;
