@@ -57,14 +57,14 @@ const App = () => {
           <Accordion.Control>Monday</Accordion.Control>
           <Accordion.Panel>
             <ScheldePelotonWeekdays key="a" />
-            {/* <VPeloton /> */}
+            <VPeloton />
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item value="Tuesday">
           <Accordion.Control>Tuesday</Accordion.Control>
           <Accordion.Panel>
             <ScheldePelotonWeekdays key="b" />
-            {/* <VPeloton /> */}
+            <VPeloton />
           </Accordion.Panel>
         </Accordion.Item>
         <Accordion.Item value="Wednesday">

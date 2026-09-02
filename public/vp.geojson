@@ -3,17 +3,6 @@
     {
       "geometry": {
         "coordinates": [
-          3.637288,
-          51.091718
-        ],
-        "type": "Point"
-      },
-      "properties": {},
-      "type": "Feature"
-    },
-    {
-      "geometry": {
-        "coordinates": [
           [
             3.636505,
             51.091697

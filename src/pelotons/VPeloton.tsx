@@ -13,6 +13,8 @@ export const VPeloton = () => (
           geojson="vp.geojson"
           lat={51.03243491123266}
           lon={3.5513476908204686}
+          label="Bierstalbrug"
+          url={VP_START}
         />
         <Thumbnail src="bierstalbrug.jpg" href={VP_START} />
       </Thumbnails>

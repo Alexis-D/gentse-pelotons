@@ -35,6 +35,8 @@ export const ScheldePelotonWeekdays = () => (
           geojson="sp.geojson"
           lat={50.9299510444054}
           lon={3.6525768763541384}
+          url={SP_START}
+          label="Zwijnaarde bridge"
         />
       </Thumbnails>
     }
@@ -94,6 +96,8 @@ export const ScheldePelotonWeekend = () => (
           geojson="sp.geojson"
           lat={50.9299510444054}
           lon={3.6525768763541384}
+          url={SP_START}
+          label="Zwijnaarde bridge"
         />
       </Thumbnails>
     }

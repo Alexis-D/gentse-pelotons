@@ -1,7 +1,12 @@
-import { Anchor, Card, Group, Image } from '@mantine/core';
-import { GeoJSON, MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
+import { ActionIcon, Anchor, Card, Group, Image, Popover } from '@mantine/core';
+import { MapPinIcon } from '@phosphor-icons/react';
 import { type ReactNode, useEffect, useState } from 'react';
+import {
+  Layer,
+  Map as MapLibreMap,
+  Marker,
+  Source,
+} from 'react-map-gl/maplibre';
 
 interface IThumbnailsProps {
   children: ReactNode;
@@ -27,13 +32,45 @@ export const Thumbnail = ({ src, href }: IThumbnailProps) => (
   </a>
 );
 
+interface IMarkerProps {
+  lat: number;
+  lon: number;
+  label: string;
+  url: string;
+}
+
+const MarkerWithDirections = ({ lat, lon, label, url }: IMarkerProps) => {
+  return (
+    <Marker latitude={lat} longitude={lon}>
+      <Popover width={200} position="bottom" withArrow shadow="md">
+        <Popover.Target>
+          <ActionIcon variant="filled" color="lime">
+            <MapPinIcon />
+          </ActionIcon>
+        </Popover.Target>
+        <Popover.Dropdown>
+          <Anchor href={url}>{label}</Anchor>
+        </Popover.Dropdown>
+      </Popover>
+    </Marker>
+  );
+};
+
 interface IMapThumbnailProps {
   geojson: string;
   lat: number;
   lon: number;
+  label: string;
+  url: string;
 }
 
-export const MapThumbnail = ({ geojson, lat, lon }: IMapThumbnailProps) => {
+export const MapThumbnail = ({
+  geojson,
+  lat,
+  lon,
+  label,
+  url,
+}: IMapThumbnailProps) => {
   const [geoJsonData, setGeoJsonData] = useState(null);
 
   useEffect(() => {
@@ -48,25 +85,40 @@ export const MapThumbnail = ({ geojson, lat, lon }: IMapThumbnailProps) => {
       .catch((error) => console.error('Error fetching GeoJSON:', error));
   }, [geojson]);
 
-  return (
-    <MapContainer
-      center={[lat, lon]}
-      zoom={9}
-      style={{ height: '160px', width: '100%' }}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+  const firstPoint = geoJsonData
+    ? geoJsonData.features[0].geometry.coordinates[0]
+    : null;
 
-      {geoJsonData && (
-        <GeoJSON
-          key={JSON.stringify(geoJsonData)}
-          data={geoJsonData}
-          style={{ color: '#3388ff', weight: 2, fillOpacity: 0.2 }}
+  return (
+    <MapLibreMap
+      initialViewState={{
+        latitude: lat,
+        longitude: lon,
+        zoom: 8,
+      }}
+      style={{ width: '100%', height: 160 }}
+      mapStyle="https://tiles.openfreemap.org/styles/liberty"
+    >
+      <Source type="geojson" data={geoJsonData}>
+        <Layer
+          id="outline-layer"
+          type="line"
+          paint={{
+            'line-color': 'hotpink',
+            'line-width': 6,
+            'line-opacity': 1,
+          }}
         />
-      )}
-    </MapContainer>
+        {firstPoint && (
+          <MarkerWithDirections
+            lat={firstPoint[1]}
+            lon={firstPoint[0]}
+            url={url}
+            label={label}
+          />
+        )}
+      </Source>
+    </MapLibreMap>
   );
 };
 
@@ -88,27 +140,19 @@ export const MapMarkersThumbnail = ({ markers }: IMapMarkersThumbnailProps) => {
   const centerLat = (sortedLat[0] + sortedLat[sortedLat.length - 1]) / 2;
   const centerLon = (sortedLon[0] + sortedLon[sortedLon.length - 1]) / 2;
 
-  return null;
   return (
-    <div key={`${Math.random()}`}>
-      <MapContainer
-        center={[centerLat, centerLon]}
-        zoom={9}
-        style={{ height: '160px', width: '100%' }}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-
-        {markers.map((m) => (
-          <Marker key={m.label} position={{ lat: m.lat, lng: m.lon }}>
-            <Popup>
-              <Anchor href={m.url}>{m.label}</Anchor>
-            </Popup>
-          </Marker>
-        ))}
-      </MapContainer>
-    </div>
+    <MapLibreMap
+      initialViewState={{
+        latitude: centerLat,
+        longitude: centerLon,
+        zoom: 10,
+      }}
+      style={{ width: '100%', height: 160 }}
+      mapStyle="https://tiles.openfreemap.org/styles/liberty"
+    >
+      {markers.map((m) => (
+        <MarkerWithDirections key={m.label} {...m} />
+      ))}
+    </MapLibreMap>
   );
 };
