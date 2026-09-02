@@ -1,4 +1,4 @@
-import { Anchor, Badge, type MantineColor } from '@mantine/core';
+import { Badge, type MantineColor } from '@mantine/core';
 import {
   FacebookLogoIcon,
   GithubLogoIcon,

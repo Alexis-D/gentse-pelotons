@@ -12,7 +12,7 @@ import {
   Title,
 } from '@mantine/core';
 import { PersonSimpleBikeIcon } from '@phosphor-icons/react';
-import { useState } from 'react';
+import { useLocalStorage } from 'usehooks-ts';
 import {
   Club9000Saturday,
   Club9000Thursday,
@@ -29,7 +29,7 @@ import { Facebook, Github, Strava, Website, WhatsApp } from './socials';
 import { getBelgiumDay } from './utils';
 
 const App = () => {
-  const [opened, setOpened] = useState(true);
+  const [opened, setOpened] = useLocalStorage('info-box-opened', true);
 
   return (
     <div className={styles.main}>
