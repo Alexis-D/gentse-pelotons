@@ -141,6 +141,15 @@ const App = () => {
                   .
                 </Group>
               </List.Item>
+              <List.Item>
+                <Group gap={5}>
+                  VELOmoaten: see
+                  <Strava href="https://www.strava.com/clubs/velomoaten-154436" />{' '}
+                  and
+                  <Facebook href="https://www.facebook.com/groups/VELOmoaten/" />
+                  .
+                </Group>
+              </List.Item>
             </List>
           </Accordion.Panel>
         </Accordion.Item>
