@@ -1,13 +1,6 @@
 {
   "features": [
     {
-      "coordinates": [
-        3.724045,
-        51.002026
-      ],
-      "type": "Point"
-    },
-    {
       "geometry": {
         "coordinates": [
           [

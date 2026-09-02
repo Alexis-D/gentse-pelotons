@@ -4,9 +4,8 @@ import {
   SimplePeloton,
   Start,
   Starts,
-  Thumbnail,
-  Thumbnails,
 } from './SimplePeloton';
+import { MapMarkersThumbnail, Thumbnail, Thumbnails } from './Thumbnails';
 
 const CLUB9000_START = 'https://maps.app.goo.gl/MFcTCUEPmeGj15Gy7';
 <Starts>
@@ -18,7 +17,16 @@ const Club9000 = (props: Pick<ISimplePeloton, 'starts' | 'gpx' | 'speed'>) => (
     name="Club 9000 / Kaffee Allez"
     thumbnails={
       <Thumbnails>
-        <Thumbnail src="club9000.png" href={CLUB9000_START} />
+        <MapMarkersThumbnail
+          markers={[
+            {
+              lat: 51.056612329213124,
+              lon: 3.7325569711639286,
+              label: 'Kaffee Allez',
+              href: CLUB9000_START,
+            },
+          ]}
+        />
         <Thumbnail src="club9000-logo.webp" href="https://www.club9000.be/" />
       </Thumbnails>
     }
