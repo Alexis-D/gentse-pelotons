@@ -61,14 +61,15 @@ export const SimplePeloton = ({
   return (
     <Card>
       {thumbnails}
-      <Group justify="space-between" mt="md" mb="xs">
-        <Title order={2}>{name}</Title>
-      </Group>
+      <Title order={2} mt="md" mb="xs">
+        {name}
+      </Title>
       {needsImprovement && (
         <Alert
           variant="light"
           color="orange"
           title="Needs improvement"
+          p="xs"
           icon={<WarningIcon />}
         >
           This ride hasn't been 100% confirmed or we don't have an authoritative
@@ -76,16 +77,16 @@ export const SimplePeloton = ({
         </Alert>
       )}
       {starts}
-      <Group gap={5}>
-        Indicative speed:
+      <Text size="sm">
+        Indicative speed:{' '}
         <Text span fw={800}>
-          {speed}
+          {speed}{' '}
         </Text>
         <Text span fs="italic">
           (this varies depending on attendance, weather, etc)
         </Text>
-      </Group>
-      {extraDetails && <Group>{extraDetails}</Group>}
+      </Text>
+      {extraDetails && <Text size="sm">{extraDetails}</Text>}
       <Space h="xs" />
       <Group>
         <Strava href={strava} />

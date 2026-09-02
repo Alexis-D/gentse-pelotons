@@ -63,7 +63,7 @@ export const Club9000Thursday = () => (
         />
       </Starts>
     }
-    gpx={<GPX text="Check the Strava events for the routes (many groups)" />}
+    gpx={<GPX text="Check the Strava events" />}
     speed="27-35+kph, various groups"
   />
 );
@@ -86,7 +86,7 @@ export const Club9000Saturday = () => (
         />
       </Starts>
     }
-    gpx={<GPX text="Check the Strava events for the routes (many groups)" />}
+    gpx={<GPX text="Check the Strava events" />}
     speed="27-32+kph, various groups"
   />
 );

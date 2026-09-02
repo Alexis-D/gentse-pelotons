@@ -2,15 +2,7 @@ import styles from './App.module.css';
 
 import '@mantine/core/styles.css';
 
-import {
-  Accordion,
-  Alert,
-  Group,
-  List,
-  Space,
-  Text,
-  Title,
-} from '@mantine/core';
+import { Accordion, Alert, List, Space, Text, Title } from '@mantine/core';
 import { PersonSimpleBikeIcon } from '@phosphor-icons/react';
 import { useLocalStorage } from 'usehooks-ts';
 import {
@@ -125,45 +117,36 @@ const App = () => {
                 VP2: A slower VPeloton, unsure about the details/regularity.
               </List.Item>
               <List.Item>
-                <Group gap={5}>
-                  SPB: A slower Scheldepeloton morning ride. See
-                  <WhatsApp href="https://chat.whatsapp.com/GLD9sHkSzXaBSShUwHxz0V" />
-                  .
-                </Group>
+                SPB: A slower Scheldepeloton morning ride. See
+                <WhatsApp href="https://chat.whatsapp.com/GLD9sHkSzXaBSShUwHxz0V" />
+                .
               </List.Item>
               <List.Item>
-                <Group gap={5}>
-                  Pédaleurs de Flandres aka PdF: see
-                  <Strava href="https://www.strava.com/clubs/445371" />,
-                  <Facebook href="https://www.facebook.com/pedaleurdeflandrescc" />
-                  and
-                  <Website href="https://www.pedaleurdeflandres.be/pages/cycling-community" />
-                  .
-                </Group>
+                Pédaleurs de Flandres aka PdF: see{' '}
+                <Strava href="https://www.strava.com/clubs/445371" />,{' '}
+                <Facebook href="https://www.facebook.com/pedaleurdeflandrescc" />{' '}
+                and{' '}
+                <Website href="https://www.pedaleurdeflandres.be/pages/cycling-community" />
+                .
               </List.Item>
               <List.Item>
-                <Group gap={5}>
-                  VELOmoaten: see
-                  <Strava href="https://www.strava.com/clubs/velomoaten-154436" />{' '}
-                  and
-                  <Facebook href="https://www.facebook.com/groups/VELOmoaten/" />
-                  .
-                </Group>
+                VELOmoaten: see{' '}
+                <Strava href="https://www.strava.com/clubs/velomoaten-154436" />{' '}
+                and{' '}
+                <Facebook href="https://www.facebook.com/groups/VELOmoaten/" />.
               </List.Item>
             </List>
           </Accordion.Panel>
         </Accordion.Item>
       </Accordion>
       <Space h="lg" />
-      <Group gap="xs">
-        If anything is incorrect, or you have more data/group rides to
-        contribute, feel free to open an issue on
-        <Github
-          href="https://github.com/Alexis-D/gentse-pelotons/issues"
-          text="Alexis-D/gentse-pelotons"
-        />
-        .
-      </Group>
+      If anything is incorrect, or you have more data/group rides to contribute,
+      feel free to open an issue on{' '}
+      <Github
+        href="https://github.com/Alexis-D/gentse-pelotons/issues"
+        text="Alexis-D/gentse-pelotons"
+      />
+      .
       <Space h="lg" />
     </div>
   );

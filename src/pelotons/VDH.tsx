@@ -27,14 +27,12 @@ export const VDH = () => (
       </Starts>
     }
     gpx={
-      <GPX
-        text="GPX (changes summer/winter, see WTC Tonneke)"
-        href="https://wtctonneke.be/gpx-wtd/"
-      />
+      <GPX text="GPX (see WTC Tonneke)" href="https://wtctonneke.be/gpx-wtd/" />
     }
     website="https://wtctonneke.be/gpx-wtd/"
     fb="https://www.facebook.com/groups/woensdagtoerdag/"
     drop
     speed="35+kph"
+    extraDetails="While a drop ride, the group stops at the top of the Balei."
   />
 );

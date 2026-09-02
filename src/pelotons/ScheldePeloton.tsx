@@ -67,7 +67,7 @@ export const ScheldePelotonWednesday = () => (
         />
       </Starts>
     }
-    gpx={<GPX text="Route needs to be confirmed / unavailable." />}
+    gpx={<GPX text="GPX unavailable" />}
     needsImprovement
   />
 );
@@ -88,7 +88,7 @@ export const ScheldePelotonWeekend = () => (
         />
       </Starts>
     }
-    gpx={<GPX text="Route needs to be confirmed / unavailable." />}
+    gpx={<GPX text="GPX unavailable" />}
     needsImprovement
   />
 );
