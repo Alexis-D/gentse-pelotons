@@ -93,12 +93,15 @@ export const ScheldePelotonWeekend = () => (
     thumbnails={
       <Thumbnails>
         {/* lat/lon = Gavere, not Zwijnaarde */}
-        <MapThumbnail
-          gpx="sp.gpx"
-          lat={50.9299510444054}
-          lon={3.6525768763541384}
-          href={SP_START}
-          label="Zwijnaarde bridge"
+        <MapMarkersThumbnail
+          markers={[
+            {
+              lat: 51.002026,
+              lon: 3.724045,
+              href: SP_START,
+              label: 'Zwijnaarde bridge',
+            },
+          ]}
         />
       </Thumbnails>
     }

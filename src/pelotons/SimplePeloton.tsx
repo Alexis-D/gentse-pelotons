@@ -58,7 +58,7 @@ export const SimplePeloton = ({
   website,
 }: ISimplePeloton) => {
   return (
-    <Card>
+    <Card shadow="xl" withBorder mb="1rem" pt={0}>
       {thumbnails}
       <Title order={2} mt="md" mb="xs">
         {name}
