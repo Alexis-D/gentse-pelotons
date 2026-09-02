@@ -37,7 +37,7 @@ export const ScheldePelotonWeekdays = () => (
   <ScheldePeloton
     thumbnails={
       <Thumbnails>
-        <Thumbnail src="sp.png" href={SP_START} />
+        <Thumbnail src="sp-tracks.png" href={SP_START} />
       </Thumbnails>
     }
     starts={
