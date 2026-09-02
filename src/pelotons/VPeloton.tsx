@@ -30,5 +30,6 @@ export const VPeloton = () => (
     gpx={<GPX text="GPX" href="vp.gpx" />}
     drop
     speed="35+kph"
+    extraDetails="ca. 50km. Just like the Scheldepeloton, grows organically until the midpoint."
   />
 );

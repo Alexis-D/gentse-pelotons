@@ -32,6 +32,7 @@ export interface ISimplePeloton {
   gpx: ReactNode;
   speed: string;
   needsImprovement?: boolean;
+  extraDetails?: string;
 
   strava?: string;
   whatsapp?: string;
@@ -49,6 +50,7 @@ export const SimplePeloton = ({
   needsImprovement = false,
   gpx,
   speed,
+  extraDetails,
 
   strava,
   whatsapp,
@@ -83,6 +85,7 @@ export const SimplePeloton = ({
           (this varies depending on attendance, weather, etc)
         </Text>
       </Group>
+      {extraDetails && <Group>{extraDetails}</Group>}
       <Space h="xs" />
       <Group>
         <Strava href={strava} />

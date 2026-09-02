@@ -16,9 +16,10 @@ const ScheldePeloton = ({
   gpx,
   thumbnails,
   needsImprovement,
+  extraDetails,
 }: Pick<
   ISimplePeloton,
-  'starts' | 'gpx' | 'thumbnails' | 'needsImprovement'
+  'starts' | 'gpx' | 'thumbnails' | 'needsImprovement' | 'extraDetails'
 >) => (
   <SimplePeloton
     name="Scheldepeloton aka SP"
@@ -30,6 +31,7 @@ const ScheldePeloton = ({
     fb="https://www.facebook.com/groups/548325031851145/"
     strava="https://www.strava.com/clubs/1845"
     needsImprovement={needsImprovement}
+    extraDetails={extraDetails}
   />
 );
 
@@ -50,6 +52,9 @@ export const ScheldePelotonWeekdays = () => (
       </Starts>
     }
     gpx={<GPX text="GPX" href="sp.gpx" />}
+    extraDetails={`From Zwijnaarde down to Eine and back to Zwijnaarde.
+      Usually 2x (ca. 80km). You might be (almost) alone in Zwijnaarde but by the time you
+      get to Eine the peloton will have likely grown to 50+ people (in the summer, way fewer in the winter)`}
   />
 );
 
