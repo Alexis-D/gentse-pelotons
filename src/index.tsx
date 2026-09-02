@@ -1,4 +1,5 @@
 import { createTheme, MantineProvider } from '@mantine/core';
+
 import { addProtocol, setWorkerUrl } from 'maplibre-gl';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
@@ -39,7 +40,9 @@ if (rootEl) {
     <React.StrictMode>
       <PersistQueryClientProvider
         client={queryClient}
-        persistOptions={{ persister }}
+        persistOptions={{
+          persister,
+        }}
       >
         <MantineProvider theme={theme}>
           <App />

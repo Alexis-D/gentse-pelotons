@@ -64,6 +64,7 @@ export const MapThumbnail = ({
         })
         .then((data) => new DOMParser().parseFromString(data, 'text/xml'))
         .then((data) => toGpx(data)),
+    staleTime: 1000 * 60 * 60 * 24 * 7, // a week
   });
 
   const firstPoint = geoJsonData
