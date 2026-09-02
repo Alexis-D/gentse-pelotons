@@ -91,7 +91,6 @@ export const MapThumbnail = ({
       .catch((error) => console.error('Error fetching GeoJSON:', error));
   }, [gpx, setGeoJsonData]);
 
-  console.log(geoJsonData);
   const firstPoint = geoJsonData
     ? (geoJsonData.features[0].geometry as LineString).coordinates[0]
     : null;
