@@ -15,13 +15,13 @@ export const VDH = () => (
               lat: 50.9946424715288,
               lon: 3.8773670512136453,
               label: 'Safti parking',
-              url: SAFTI,
+              href: SAFTI,
             },
             {
               lat: 51.004656599108785,
               lon: 3.802856144580596,
               label: 'Kerk Melle',
-              url: MELLE_KERK,
+              href: MELLE_KERK,
             },
           ]}
         />

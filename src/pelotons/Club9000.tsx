@@ -23,7 +23,7 @@ const Club9000 = (props: Pick<ISimplePeloton, 'starts' | 'gpx' | 'speed'>) => (
               lat: 51.056612329213124,
               lon: 3.7325569711639286,
               label: 'Kaffee Allez',
-              url: CLUB9000_START,
+              href: CLUB9000_START,
             },
           ]}
         />

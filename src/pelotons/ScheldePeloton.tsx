@@ -32,10 +32,10 @@ export const ScheldePelotonWeekdays = () => (
       <Thumbnails>
         {/* lat/lon = Gavere, not Zwijnaarde */}
         <MapThumbnail
-          geojson="sp.geojson"
+          gpx="sp.gpx"
           lat={50.9299510444054}
           lon={3.6525768763541384}
-          url={SP_START}
+          href={SP_START}
           label="Zwijnaarde bridge"
         />
       </Thumbnails>
@@ -66,7 +66,7 @@ export const ScheldePelotonWednesday = () => (
               lat: 50.986505,
               lon: 3.717936,
               label: 'Wouter Weylandt monument',
-              url: SP_WW_START,
+              href: SP_WW_START,
             },
           ]}
         />
@@ -93,10 +93,10 @@ export const ScheldePelotonWeekend = () => (
       <Thumbnails>
         {/* lat/lon = Gavere, not Zwijnaarde */}
         <MapThumbnail
-          geojson="sp.geojson"
+          gpx="sp.gpx"
           lat={50.9299510444054}
           lon={3.6525768763541384}
-          url={SP_START}
+          href={SP_START}
           label="Zwijnaarde bridge"
         />
       </Thumbnails>

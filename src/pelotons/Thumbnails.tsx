@@ -1,12 +1,15 @@
 import { ActionIcon, Anchor, Card, Group, Image, Popover } from '@mantine/core';
 import { MapPinIcon } from '@phosphor-icons/react';
-import { type ReactNode, useEffect, useState } from 'react';
+import { gpx as toGpx } from '@tmcw/togeojson';
+import type { FeatureCollection, LineString } from 'geojson';
+import { type ReactNode, useEffect } from 'react';
 import {
   Layer,
   Map as MapLibreMap,
   Marker,
   Source,
 } from 'react-map-gl/maplibre';
+import { useLocalStorage } from 'usehooks-ts';
 
 interface IThumbnailsProps {
   children: ReactNode;
@@ -36,10 +39,10 @@ interface IMarkerProps {
   lat: number;
   lon: number;
   label: string;
-  url: string;
+  href: string;
 }
 
-const MarkerWithDirections = ({ lat, lon, label, url }: IMarkerProps) => {
+const MarkerWithDirections = ({ lat, lon, label, href }: IMarkerProps) => {
   return (
     <Marker latitude={lat} longitude={lon}>
       <Popover width={200} position="bottom" withArrow shadow="md">
@@ -49,7 +52,7 @@ const MarkerWithDirections = ({ lat, lon, label, url }: IMarkerProps) => {
           </ActionIcon>
         </Popover.Target>
         <Popover.Dropdown>
-          <Anchor href={url}>{label}</Anchor>
+          <Anchor href={href}>{label}</Anchor>
         </Popover.Dropdown>
       </Popover>
     </Marker>
@@ -57,36 +60,40 @@ const MarkerWithDirections = ({ lat, lon, label, url }: IMarkerProps) => {
 };
 
 interface IMapThumbnailProps {
-  geojson: string;
+  gpx: string;
   lat: number;
   lon: number;
   label: string;
-  url: string;
+  href: string;
 }
 
 export const MapThumbnail = ({
-  geojson,
+  gpx,
   lat,
   lon,
   label,
-  url,
+  href,
 }: IMapThumbnailProps) => {
-  const [geoJsonData, setGeoJsonData] = useState(null);
+  const [geoJsonData, setGeoJsonData] =
+    useLocalStorage<FeatureCollection | null>(gpx, null);
 
   useEffect(() => {
-    fetch(geojson)
+    fetch(gpx)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-        return response.json();
+        return response.text();
       })
+      .then((data) => new DOMParser().parseFromString(data, 'text/xml'))
+      .then((data) => toGpx(data))
       .then((data) => setGeoJsonData(data))
       .catch((error) => console.error('Error fetching GeoJSON:', error));
-  }, [geojson]);
+  }, [gpx, setGeoJsonData]);
 
+  console.log(geoJsonData);
   const firstPoint = geoJsonData
-    ? geoJsonData.features[0].geometry.coordinates[0]
+    ? (geoJsonData.features[0].geometry as LineString).coordinates[0]
     : null;
 
   return (
@@ -99,25 +106,27 @@ export const MapThumbnail = ({
       style={{ width: '100%', height: 160 }}
       mapStyle="https://tiles.openfreemap.org/styles/liberty"
     >
-      <Source type="geojson" data={geoJsonData}>
-        <Layer
-          id="outline-layer"
-          type="line"
-          paint={{
-            'line-color': 'hotpink',
-            'line-width': 6,
-            'line-opacity': 1,
-          }}
-        />
-        {firstPoint && (
-          <MarkerWithDirections
-            lat={firstPoint[1]}
-            lon={firstPoint[0]}
-            url={url}
-            label={label}
+      {geoJsonData && (
+        <Source type="geojson" data={geoJsonData}>
+          <Layer
+            id="outline-layer"
+            type="line"
+            paint={{
+              'line-color': 'hotpink',
+              'line-width': 6,
+              'line-opacity': 1,
+            }}
           />
-        )}
-      </Source>
+          {firstPoint && (
+            <MarkerWithDirections
+              lat={firstPoint[1]}
+              lon={firstPoint[0]}
+              href={href}
+              label={label}
+            />
+          )}
+        </Source>
+      )}
     </MapLibreMap>
   );
 };
@@ -126,7 +135,7 @@ interface ILatLon {
   lat: number;
   lon: number;
   label: string;
-  url: string;
+  href: string;
 }
 
 interface IMapMarkersThumbnailProps {
@@ -134,6 +143,10 @@ interface IMapMarkersThumbnailProps {
 }
 
 export const MapMarkersThumbnail = ({ markers }: IMapMarkersThumbnailProps) => {
+  if (!markers) {
+    return null;
+  }
+
   const sortedLat = markers.map((m) => m.lat).sort();
   const sortedLon = markers.map((m) => m.lon).sort();
 
