@@ -104,6 +104,7 @@ export const MapThumbnail = ({
       }}
       style={{ width: '100%', height: 160 }}
       mapStyle="https://tiles.openfreemap.org/styles/liberty"
+      attributionControl={false}
     >
       {geoJsonData && (
         <Source type="geojson" data={geoJsonData}>
@@ -161,6 +162,7 @@ export const MapMarkersThumbnail = ({ markers }: IMapMarkersThumbnailProps) => {
       }}
       style={{ width: '100%', height: 160 }}
       mapStyle="https://tiles.openfreemap.org/styles/liberty"
+      attributionControl={false}
     >
       {markers.map((m) => (
         <MarkerWithDirections key={m.label} {...m} />
