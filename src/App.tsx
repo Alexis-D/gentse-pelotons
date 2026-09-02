@@ -151,7 +151,7 @@ const App = () => {
         contribute, feel free to open an issue on
         <Github
           href="https://github.com/Alexis-D/gentse-pelotons/issues"
-          text="Alexis-D/gentse-peloton"
+          text="Alexis-D/gentse-pelotons"
         />
         .
       </Group>
