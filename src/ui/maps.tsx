@@ -1,15 +1,14 @@
 import { ActionIcon, Anchor, Popover } from '@mantine/core';
 import { MapPinIcon } from '@phosphor-icons/react';
+import { useQuery } from '@tanstack/react-query';
 import { gpx as toGpx } from '@tmcw/togeojson';
-import type { FeatureCollection, LineString } from 'geojson';
-import { useEffect } from 'react';
+import type { LineString } from 'geojson';
 import {
   Layer,
   Map as MapLibreMap,
   Marker,
   Source,
 } from 'react-map-gl/maplibre';
-import { useLocalStorage } from 'usehooks-ts';
 
 interface IMarkerWithPopoverLinkProps {
   lat: number;
@@ -53,11 +52,9 @@ export const MapThumbnail = ({
   label,
   href,
 }: IMapThumbnailProps) => {
-  const [geoJsonData, setGeoJsonData] =
-    useLocalStorage<FeatureCollection | null>(`gpx-v0/${gpx}`, null);
-
-  useEffect(() => {
-    if (geoJsonData === null) {
+  const { data: geoJsonData } = useQuery({
+    queryKey: ['v0', 'gpx', gpx],
+    queryFn: async () =>
       fetch(gpx)
         .then((response) => {
           if (!response.ok) {
@@ -66,11 +63,8 @@ export const MapThumbnail = ({
           return response.text();
         })
         .then((data) => new DOMParser().parseFromString(data, 'text/xml'))
-        .then((data) => toGpx(data))
-        .then((data) => setGeoJsonData(data))
-        .catch((error) => console.error('Error fetching GeoJSON:', error));
-    }
-  }, [gpx, geoJsonData, setGeoJsonData]);
+        .then((data) => toGpx(data)),
+  });
 
   const firstPoint = geoJsonData
     ? (geoJsonData.features[0].geometry as LineString).coordinates[0]
