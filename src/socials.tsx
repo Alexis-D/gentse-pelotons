@@ -30,42 +30,34 @@ const Social = ({ href, text, color, icon }: ISocialProps) =>
     </Badge>
   );
 
-export const Strava = ({ href }: Pick<ISocialProps, 'href'>) => (
-  <Social text="Strava" color="orange" href={href} />
+export const Strava = (props: Pick<ISocialProps, 'href'>) => (
+  <Social text="Strava" color="orange" {...props} />
 );
-export const WhatsApp = ({ href }: Pick<ISocialProps, 'href'>) => (
+export const WhatsApp = (props: Pick<ISocialProps, 'href'>) => (
   <Social
     text="WhatsApp"
     color="green"
-    href={href}
     icon={<WhatsappLogoIcon />}
+    {...props}
   />
 );
-export const Facebook = ({ href }: Pick<ISocialProps, 'href'>) => (
-  <Social
-    text="Facebook"
-    color="blue"
-    href={href}
-    icon={<FacebookLogoIcon />}
-  />
+export const Facebook = (props: Pick<ISocialProps, 'href'>) => (
+  <Social text="Facebook" color="blue" icon={<FacebookLogoIcon />} {...props} />
 );
-export const Instagram = ({ href }: Pick<ISocialProps, 'href'>) => (
+export const Instagram = (props: Pick<ISocialProps, 'href'>) => (
   <Social
     text="Instagram"
     color="pink"
-    href={href}
     icon={<InstagramLogoIcon />}
+    {...props}
   />
 );
-export const Website = ({ href }: Pick<ISocialProps, 'href'>) => (
-  <Social text="Website" color="cyan" href={href} icon={<GlobeIcon />} />
+export const Website = (props: Pick<ISocialProps, 'href'>) => (
+  <Social text="Website" color="cyan" icon={<GlobeIcon />} {...props} />
 );
-export const Github = ({ href, text }: Pick<ISocialProps, 'href' | 'text'>) => (
-  <Social text={text} color="gray" href={href} icon={<GithubLogoIcon />} />
+export const Github = (props: Pick<ISocialProps, 'href' | 'text'>) => (
+  <Social color="gray" icon={<GithubLogoIcon />} {...props} />
 );
-export const GPXSocial = ({
-  href,
-  text,
-}: Pick<ISocialProps, 'href' | 'text'>) => (
-  <Social text={text} color="gray" href={href} icon={<MapPinIcon />} />
+export const GPXSocial = (props: Pick<ISocialProps, 'href' | 'text'>) => (
+  <Social color="gray" icon={<MapPinIcon />} {...props} />
 );

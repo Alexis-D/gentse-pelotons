@@ -11,27 +11,19 @@ import {
 const SP_START = 'https://maps.app.goo.gl/tXo88zK39Fz3JzoX7';
 const SP_WW_START = 'https://maps.app.goo.gl/ckNdpvgCKH7cAtgi6';
 
-const ScheldePeloton = ({
-  starts,
-  gpx,
-  thumbnails,
-  needsImprovement,
-  extraDetails,
-}: Pick<
-  ISimplePeloton,
-  'starts' | 'gpx' | 'thumbnails' | 'needsImprovement' | 'extraDetails'
->) => (
+const ScheldePeloton = (
+  props: Pick<
+    ISimplePeloton,
+    'starts' | 'gpx' | 'thumbnails' | 'needsImprovement' | 'extraDetails'
+  >,
+) => (
   <SimplePeloton
     name="Scheldepeloton aka SP"
-    thumbnails={thumbnails}
-    starts={starts}
-    gpx={gpx}
     drop
     speed="35+kph"
     fb="https://www.facebook.com/groups/548325031851145/"
     strava="https://www.strava.com/clubs/1845"
-    needsImprovement={needsImprovement}
-    extraDetails={extraDetails}
+    {...props}
   />
 );
 

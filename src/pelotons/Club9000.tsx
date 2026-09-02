@@ -13,11 +13,7 @@ const CLUB9000_START = 'https://maps.app.goo.gl/MFcTCUEPmeGj15Gy7';
   <Start time="6:30AM" location="Kaffee Allez" locationhref={CLUB9000_START} />
 </Starts>;
 
-const Club9000 = ({
-  starts,
-  gpx,
-  speed,
-}: Pick<ISimplePeloton, 'starts' | 'gpx' | 'speed'>) => (
+const Club9000 = (props: Pick<ISimplePeloton, 'starts' | 'gpx' | 'speed'>) => (
   <SimplePeloton
     name="Club 9000 / Kaffee Allez"
     thumbnails={
@@ -26,14 +22,12 @@ const Club9000 = ({
         <Thumbnail src="club9000-logo.webp" href="https://www.club9000.be/" />
       </Thumbnails>
     }
-    starts={starts}
-    gpx={gpx}
     strava="https://www.strava.com/clubs/club9000"
     whatsapp="https://chat.whatsapp.com/DbfyZg4EjyVLOECNyf478r"
     insta="https://www.instagram.com/club.9000/"
     website="https://www.club9000.be/"
-    speed={speed}
     samenuit
+    {...props}
   />
 );
 
