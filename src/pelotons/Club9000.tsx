@@ -9,9 +9,6 @@ import {
 } from './SimplePeloton';
 
 const CLUB9000_START = 'https://maps.app.goo.gl/MFcTCUEPmeGj15Gy7';
-<Starts>
-  <Start time="6:30AM" location="Kaffee Allez" locationhref={CLUB9000_START} />
-</Starts>;
 
 const Club9000 = (props: Pick<ISimplePeloton, 'starts' | 'gpx' | 'speed'>) => (
   <SimplePeloton
