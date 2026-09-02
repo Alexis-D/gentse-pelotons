@@ -4,9 +4,12 @@ import {
   Badge,
   Card,
   Group,
+  Highlight,
   Image,
   List,
+  Space,
   Text,
+  Title,
 } from '@mantine/core';
 import { ClockIcon, MapPinIcon, WarningIcon } from '@phosphor-icons/react';
 import type { ReactNode } from 'react';
@@ -57,7 +60,7 @@ export const SimplePeloton = ({
     <Card>
       {thumbnails}
       <Group justify="space-between" mt="md" mb="xs">
-        <Text fw={800}>{name}</Text>
+        <Title order={2}>{name}</Title>
       </Group>
       {needsImprovement && (
         <Alert
@@ -71,7 +74,7 @@ export const SimplePeloton = ({
         </Alert>
       )}
       {starts}
-      <Text>
+      <Group gap={5}>
         Indicative speed:{' '}
         <Text span fw={800}>
           {speed}
@@ -79,7 +82,8 @@ export const SimplePeloton = ({
         <Text span fs="italic">
           (this varies depending on attendance, weather, etc)
         </Text>
-      </Text>
+      </Group>
+      <Space h="xs" />
       <Group>
         <Strava href={strava} />
         <WhatsApp href={whatsapp} />
@@ -89,16 +93,22 @@ export const SimplePeloton = ({
         {gpx}
       </Group>
       {drop && (
-        <Text size="xs" fs="italic">
-          This is a drop ride: you can join anywhere, and no-one will wait if
-          you get a mechanical/etc.
-        </Text>
+        <>
+          <Space h="xs" />
+          <Text size="xs" fs="italic">
+            This is a drop ride: you can join anywhere, and no-one will wait if
+            you get a mechanical/etc.
+          </Text>
+        </>
       )}
       {samenuit && (
-        <Text size="xs" fs="italic">
-          Samen uit, samen thuis: this is a no-drop ride, we wait for each
-          others.
-        </Text>
+        <>
+          <Space h="xs" />
+          <Highlight highlight="Samen uit, samen thuis" fs="italic" size="xs">
+            Samen uit, samen thuis: this is a no-drop ride, we wait for each
+            others.
+          </Highlight>
+        </>
       )}
     </Card>
   );
@@ -173,7 +183,7 @@ export const GPX = ({ href, text }: IGPXProps) =>
   href !== undefined ? (
     <GPXSocial href={href} text={text} />
   ) : (
-    <Badge color="gray" leftSection={<MapPinIcon />}>
+    <Badge color="gray" variant="outline" leftSection={<MapPinIcon />}>
       {text}
     </Badge>
   );

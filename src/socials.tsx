@@ -19,11 +19,15 @@ interface ISocialProps {
 
 const Social = ({ href, text, color, icon }: ISocialProps) =>
   href && (
-    <Anchor href={href}>
-      <Badge color={color} className={styles.pointer} leftSection={icon}>
-        {text}
-      </Badge>
-    </Anchor>
+    <Badge
+      component="a"
+      href={href}
+      color={color}
+      className={styles.pointer}
+      leftSection={icon}
+    >
+      {text}
+    </Badge>
   );
 
 export const Strava = ({ href }: Pick<ISocialProps, 'href'>) => (

@@ -118,10 +118,8 @@ const App = () => {
         <Accordion.Item value="Other">
           <Accordion.Control>Other</Accordion.Control>
           <Accordion.Panel>
-            <Text>
-              Other relevant groups rides are around but they aren't as regular
-              (or I don't have enough info!):
-            </Text>
+            Other relevant groups rides are around but they aren't as regular
+            (or I don't have enough info!):
             <List>
               <List.Item>
                 VP2: A slower VPeloton, unsure about the details/regularity.
@@ -145,15 +143,13 @@ const App = () => {
       </Accordion>
       <Space h="lg" />
       <Group gap="xs">
-        <Text>
-          If anything is incorrect, or you have more data/group rides to
-          contribute, feel free to open an issue on{' '}
-        </Text>
+        If anything is incorrect, or you have more data/group rides to
+        contribute, feel free to open an issue on{' '}
         <Github
           href="https://github.com/Alexis-D/gentse-pelotons/issues"
           text="Alexis-D/gentse-peloton"
         />
-        <Text>.</Text>
+        .
       </Group>
       <Space h="lg" />
     </div>
