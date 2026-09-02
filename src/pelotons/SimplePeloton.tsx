@@ -77,10 +77,10 @@ export const SimplePeloton = ({
       )}
       {starts}
       <Group gap={5}>
-        Indicative speed:{' '}
+        Indicative speed:
         <Text span fw={800}>
           {speed}
-        </Text>{' '}
+        </Text>
         <Text span fs="italic">
           (this varies depending on attendance, weather, etc)
         </Text>

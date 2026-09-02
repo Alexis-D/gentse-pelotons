@@ -125,17 +125,21 @@ const App = () => {
                 VP2: A slower VPeloton, unsure about the details/regularity.
               </List.Item>
               <List.Item>
-                SPB: A slower Scheldepeloton morning ride. See{' '}
-                <WhatsApp href="https://chat.whatsapp.com/GLD9sHkSzXaBSShUwHxz0V" />
-                .
+                <Group gap={5}>
+                  SPB: A slower Scheldepeloton morning ride. See
+                  <WhatsApp href="https://chat.whatsapp.com/GLD9sHkSzXaBSShUwHxz0V" />
+                  .
+                </Group>
               </List.Item>
               <List.Item>
-                Pédaleurs de Flandres aka PdF: see{' '}
-                <Strava href="https://www.strava.com/clubs/445371" />,{' '}
-                <Facebook href="https://www.facebook.com/pedaleurdeflandrescc" />{' '}
-                and{' '}
-                <Website href="https://www.pedaleurdeflandres.be/pages/cycling-community" />
-                .
+                <Group gap={5}>
+                  Pédaleurs de Flandres aka PdF: see
+                  <Strava href="https://www.strava.com/clubs/445371" />,
+                  <Facebook href="https://www.facebook.com/pedaleurdeflandrescc" />
+                  and
+                  <Website href="https://www.pedaleurdeflandres.be/pages/cycling-community" />
+                  .
+                </Group>
               </List.Item>
             </List>
           </Accordion.Panel>
@@ -144,7 +148,7 @@ const App = () => {
       <Space h="lg" />
       <Group gap="xs">
         If anything is incorrect, or you have more data/group rides to
-        contribute, feel free to open an issue on{' '}
+        contribute, feel free to open an issue on
         <Github
           href="https://github.com/Alexis-D/gentse-pelotons/issues"
           text="Alexis-D/gentse-peloton"
