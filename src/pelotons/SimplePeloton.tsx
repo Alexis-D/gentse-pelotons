@@ -106,7 +106,7 @@ export const SimplePeloton = ({
           <Space h="xs" />
           <Highlight highlight="Samen uit, samen thuis" fs="italic" size="xs">
             Samen uit, samen thuis: this is a no-drop ride, we wait for each
-            others.
+            other.
           </Highlight>
         </>
       )}
