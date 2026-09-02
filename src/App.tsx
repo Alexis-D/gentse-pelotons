@@ -52,7 +52,8 @@ const App = () => {
           <Space h="lg" />
         </>
       )}
-      <Accordion defaultValue={getBelgiumDay()}>
+      {/* do not rely on keepMountedMode=activity as it causes issues when changing visibility */}
+      <Accordion defaultValue={getBelgiumDay()} keepMountedMode="display-none">
         <Accordion.Item value="Monday">
           <Accordion.Control>Monday</Accordion.Control>
           <Accordion.Panel>

@@ -42,22 +42,20 @@ interface IMarkerProps {
   href: string;
 }
 
-const MarkerWithDirections = ({ lat, lon, label, href }: IMarkerProps) => {
-  return (
-    <Marker latitude={lat} longitude={lon}>
-      <Popover width={200} position="bottom" withArrow shadow="md">
-        <Popover.Target>
-          <ActionIcon variant="filled" color="lime">
-            <MapPinIcon />
-          </ActionIcon>
-        </Popover.Target>
-        <Popover.Dropdown>
-          <Anchor href={href}>{label}</Anchor>
-        </Popover.Dropdown>
-      </Popover>
-    </Marker>
-  );
-};
+const MarkerWithDirections = ({ lat, lon, label, href }: IMarkerProps) => (
+  <Marker latitude={lat} longitude={lon}>
+    <Popover width={200} position="bottom" withArrow shadow="md">
+      <Popover.Target>
+        <ActionIcon variant="filled" color="lime">
+          <MapPinIcon />
+        </ActionIcon>
+      </Popover.Target>
+      <Popover.Dropdown>
+        <Anchor href={href}>{label}</Anchor>
+      </Popover.Dropdown>
+    </Popover>
+  </Marker>
+);
 
 interface IMapThumbnailProps {
   gpx: string;
@@ -75,21 +73,23 @@ export const MapThumbnail = ({
   href,
 }: IMapThumbnailProps) => {
   const [geoJsonData, setGeoJsonData] =
-    useLocalStorage<FeatureCollection | null>(gpx, null);
+    useLocalStorage<FeatureCollection | null>(`gpx-v0/${gpx}`, null);
 
   useEffect(() => {
-    fetch(gpx)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        return response.text();
-      })
-      .then((data) => new DOMParser().parseFromString(data, 'text/xml'))
-      .then((data) => toGpx(data))
-      .then((data) => setGeoJsonData(data))
-      .catch((error) => console.error('Error fetching GeoJSON:', error));
-  }, [gpx, setGeoJsonData]);
+    if (geoJsonData === null) {
+      fetch(gpx)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
+        })
+        .then((data) => new DOMParser().parseFromString(data, 'text/xml'))
+        .then((data) => toGpx(data))
+        .then((data) => setGeoJsonData(data))
+        .catch((error) => console.error('Error fetching GeoJSON:', error));
+    }
+  }, [gpx, geoJsonData, setGeoJsonData]);
 
   const firstPoint = geoJsonData
     ? (geoJsonData.features[0].geometry as LineString).coordinates[0]
@@ -117,15 +117,15 @@ export const MapThumbnail = ({
               'line-opacity': 1,
             }}
           />
-          {firstPoint && (
-            <MarkerWithDirections
-              lat={firstPoint[1]}
-              lon={firstPoint[0]}
-              href={href}
-              label={label}
-            />
-          )}
         </Source>
+      )}
+      {firstPoint && (
+        <MarkerWithDirections
+          lat={firstPoint[1]}
+          lon={firstPoint[0]}
+          href={href}
+          label={label}
+        />
       )}
     </MapLibreMap>
   );
