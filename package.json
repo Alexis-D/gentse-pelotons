@@ -21,6 +21,7 @@
     "@j178/prek": "^0.5.1",
     "@rsbuild/core": "^2.2.1",
     "@rsbuild/plugin-react": "^2.1.0",
+    "@rsbuild/plugin-type-check": "^1.6.0",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
