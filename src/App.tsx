@@ -7,11 +7,13 @@ import {
   Alert,
   Group,
   List,
+  SimpleGrid,
   Space,
   Text,
   Title,
 } from '@mantine/core';
 import { ArrowFatRightIcon, PersonSimpleBikeIcon } from '@phosphor-icons/react';
+import type { ComponentProps } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 import {
   Club9000Saturday,
@@ -27,6 +29,14 @@ import { VDH } from './pelotons/VDH';
 import { VPeloton } from './pelotons/VPeloton';
 import { Facebook, Github, Strava, Website } from './ui/socials';
 import { getBelgiumDay } from './utils';
+
+type AccordionPanelProps = ComponentProps<typeof Accordion.Panel>;
+
+const CustomAccordionPanel = ({ children, ...props }: AccordionPanelProps) => (
+  <Accordion.Panel {...props}>
+    <SimpleGrid cols={{ base: 1, sm: 2 }}>{children}</SimpleGrid>
+  </Accordion.Panel>
+);
 
 const App = () => {
   const [opened, setOpened] = useLocalStorage('info-box-opened', true);
@@ -67,10 +77,10 @@ const App = () => {
           <Accordion.Control icon={today === 'Monday' && <ArrowFatRightIcon />}>
             Monday
           </Accordion.Control>
-          <Accordion.Panel>
+          <CustomAccordionPanel>
             <ScheldePelotonWeekdays key="a" />
             <VPeloton />
-          </Accordion.Panel>
+          </CustomAccordionPanel>
         </Accordion.Item>
         <Accordion.Item value="Tuesday">
           <Accordion.Control
@@ -78,10 +88,10 @@ const App = () => {
           >
             Tuesday
           </Accordion.Control>
-          <Accordion.Panel>
+          <CustomAccordionPanel>
             <ScheldePelotonWeekdays key="b" />
             <VPeloton />
-          </Accordion.Panel>
+          </CustomAccordionPanel>
         </Accordion.Item>
         <Accordion.Item value="Wednesday">
           <Accordion.Control
@@ -89,13 +99,13 @@ const App = () => {
           >
             Wednesday
           </Accordion.Control>
-          <Accordion.Panel>
+          <CustomAccordionPanel>
             <Club9000Wednesday />
             <ScheldePelotonWeekdays />
             <VPeloton />
             <ScheldePelotonWednesday />
             <VDH />
-          </Accordion.Panel>
+          </CustomAccordionPanel>
         </Accordion.Item>
         <Accordion.Item value="Thursday">
           <Accordion.Control
@@ -103,20 +113,20 @@ const App = () => {
           >
             Thursday
           </Accordion.Control>
-          <Accordion.Panel>
+          <CustomAccordionPanel>
             <ScheldePelotonWeekdays />
             <VPeloton />
             <Club9000Thursday />
-          </Accordion.Panel>
+          </CustomAccordionPanel>
         </Accordion.Item>
         <Accordion.Item value="Friday">
           <Accordion.Control icon={today === 'Friday' && <ArrowFatRightIcon />}>
             Friday
           </Accordion.Control>
-          <Accordion.Panel>
+          <CustomAccordionPanel>
             <ScheldePelotonWeekdays />
             <VPeloton />
-          </Accordion.Panel>
+          </CustomAccordionPanel>
         </Accordion.Item>
         <Accordion.Item value="Saturday">
           <Accordion.Control
@@ -124,20 +134,20 @@ const App = () => {
           >
             Saturday
           </Accordion.Control>
-          <Accordion.Panel>
+          <CustomAccordionPanel>
             <ScheldePelotonWeekend />
             <VPeloton />
             <Club9000Saturday />
-          </Accordion.Panel>
+          </CustomAccordionPanel>
         </Accordion.Item>
         <Accordion.Item value="Sunday">
           <Accordion.Control icon={today === 'Sunday' && <ArrowFatRightIcon />}>
             Sunday
           </Accordion.Control>
-          <Accordion.Panel>
+          <CustomAccordionPanel>
             <ScheldePelotonWeekend />
             <VPeloton />
-          </Accordion.Panel>
+          </CustomAccordionPanel>
         </Accordion.Item>
         <Accordion.Item value="Other">
           <Accordion.Control>Other</Accordion.Control>
