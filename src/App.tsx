@@ -34,7 +34,7 @@ const App = () => {
 
   return (
     <div className={styles.main}>
-      <Title order={1}>Regular Ghent Pelotons / Group rides</Title>
+      <Title order={1}>Regular Ghent Pelotons / Group rides 🚴🚴‍♀️</Title>
       <Space h="lg" />
       {opened && (
         <>
