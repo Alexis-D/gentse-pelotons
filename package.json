@@ -9,6 +9,7 @@
     "@tanstack/react-query-persist-client": "^5.102.8",
     "@tmcw/togeojson": "^7.1.2",
     "@types/geojson": "^7946.0.16",
+    "bowser": "^2.14.1",
     "maplibre-gl": "^6.7.0",
     "pmtiles": "^4.5.0",
     "react": "^19.2.8",

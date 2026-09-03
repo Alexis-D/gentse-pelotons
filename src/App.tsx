@@ -13,6 +13,7 @@ import {
   Title,
 } from '@mantine/core';
 import { ArrowFatRightIcon, PersonSimpleBikeIcon } from '@phosphor-icons/react';
+import { getParser } from 'bowser';
 import type { ComponentProps } from 'react';
 import { useLocalStorage } from 'usehooks-ts';
 import {
@@ -41,6 +42,16 @@ const CustomAccordionPanel = ({ children, ...props }: AccordionPanelProps) => (
 const App = () => {
   const [opened, setOpened] = useLocalStorage('info-box-opened', true);
   const today = getBelgiumDay();
+
+  const parser = getParser(window.navigator.userAgent);
+  // do not rely on keepMountedMode=activity as it causes issues when changing visibility
+  // unmount to avoid 'Too many active WebGL contexts. Oldest context will be lost' on chrome-based/mobile browsers...
+  const accordionProps = {
+    keepMounted:
+      parser.getPlatformType() === 'desktop' &&
+      parser.getPlatformType() === 'Firefox',
+    keepMountedMode: 'display-none',
+  } as const;
 
   return (
     <div className={styles.main}>
@@ -71,8 +82,7 @@ const App = () => {
           <Space h="lg" />
         </>
       )}
-      {/* do not rely on keepMountedMode=activity as it causes issues when changing visibility */}
-      <Accordion defaultValue={today} keepMountedMode="display-none">
+      <Accordion defaultValue={today} {...accordionProps}>
         <Accordion.Item value="Monday">
           <Accordion.Control icon={today === 'Monday' && <ArrowFatRightIcon />}>
             Monday
