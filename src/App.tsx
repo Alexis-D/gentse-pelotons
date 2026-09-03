@@ -75,8 +75,8 @@ const App = () => {
             </Text>
             <Text>
               Pro-tip: 'tegen' (against) when there's oncoming traffic, 'voor'
-              (in-front) when there's something to overtake (pedestrian, slower
-              cyclist, ...), and 'paaltje(s)' (bollards).
+              (in front/ahead) when there's something to overtake (pedestrian,
+              slower cyclist, ...), and 'paaltje(s)' (bollards).
             </Text>
           </Alert>
           <Space h="lg" />
