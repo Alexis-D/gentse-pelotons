@@ -10,7 +10,7 @@ repo = "builtin"
   [[repos.hooks]]
   id = "pretty-format-json"
   args = [ "--autofix", "--indent=2" ]
-  exclude = "^package-lock\\.json$"
+  exclude = "^(package-lock|tsconfig)\\.json$"
 
 [[repos]]
 repo = "local"

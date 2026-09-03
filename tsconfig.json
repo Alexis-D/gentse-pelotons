@@ -17,7 +17,9 @@
 
     /* type checking */
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+
+    "strict": true
   },
   "include": ["src"]
 }
