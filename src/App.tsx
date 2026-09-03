@@ -78,7 +78,7 @@ const App = () => {
             Monday
           </Accordion.Control>
           <CustomAccordionPanel>
-            <ScheldePelotonWeekdays key="a" />
+            <ScheldePelotonWeekdays />
             <VPeloton />
           </CustomAccordionPanel>
         </Accordion.Item>
@@ -89,7 +89,7 @@ const App = () => {
             Tuesday
           </Accordion.Control>
           <CustomAccordionPanel>
-            <ScheldePelotonWeekdays key="b" />
+            <ScheldePelotonWeekdays />
             <VPeloton />
           </CustomAccordionPanel>
         </Accordion.Item>
