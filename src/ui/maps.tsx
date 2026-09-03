@@ -1,8 +1,13 @@
-import { ActionIcon, Anchor, Popover } from '@mantine/core';
+import {
+  ActionIcon,
+  Alert,
+  Anchor,
+  LoadingOverlay,
+  Popover,
+} from '@mantine/core';
 import { MapPinIcon } from '@phosphor-icons/react';
 import { useQuery } from '@tanstack/react-query';
 import { gpx as toGpx } from '@tmcw/togeojson';
-import type { LineString } from 'geojson';
 import {
   Layer,
   Map as MapLibreMap,
@@ -52,7 +57,11 @@ export const MapThumbnail = ({
   label,
   href,
 }: IMapThumbnailProps) => {
-  const { data: geoJsonData } = useQuery({
+  const {
+    data: geoJsonData,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ['v0', 'gpx', gpx],
     queryFn: async () =>
       fetch(gpx)
@@ -67,9 +76,19 @@ export const MapThumbnail = ({
     staleTime: 1000 * 60 * 60 * 24 * 7, // a week
   });
 
-  const firstPoint = geoJsonData
-    ? (geoJsonData.features[0].geometry as LineString).coordinates[0]
-    : null;
+  const firstFeatureGeometry = geoJsonData?.features[0].geometry;
+
+  if (error) {
+    return (
+      <Alert color="red" h="160px" w="100%" title="Failed to load GPX">
+        Failed to load {gpx} / map cannot be rendered.
+      </Alert>
+    );
+  }
+  const firstPoint =
+    firstFeatureGeometry?.type === 'LineString'
+      ? firstFeatureGeometry.coordinates[0]
+      : null;
 
   return (
     <MapLibreMap
@@ -82,6 +101,7 @@ export const MapThumbnail = ({
       mapStyle="https://tiles.openfreemap.org/styles/liberty"
       attributionControl={false}
     >
+      <LoadingOverlay visible={isLoading} />
       {geoJsonData && (
         <Source type="geojson" data={geoJsonData}>
           <Layer

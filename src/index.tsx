@@ -10,7 +10,7 @@ import { QueryClient } from '@tanstack/react-query';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { Protocol } from 'pmtiles';
 
-// 1. Initialize the PMTiles protocol handler
+// map init
 const protocol = new Protocol();
 addProtocol('pmtiles', protocol.tile);
 
@@ -20,8 +20,11 @@ setWorkerUrl(
     import.meta.url,
   ).toString(),
 );
+
+// mantine init
 const theme = createTheme({});
 
+// react query init
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -32,6 +35,18 @@ const queryClient = new QueryClient({
 const persister = createAsyncStoragePersister({
   storage: window.localStorage,
 });
+
+const ReactQueryDevtoolsProduction = React.lazy(() =>
+  import('@tanstack/react-query-devtools').then((d) => ({
+    default: d.ReactQueryDevtools,
+  })),
+);
+
+const WithDevtools = () => {
+  return (
+    process.env.NODE_ENV === 'development' && <ReactQueryDevtoolsProduction />
+  );
+};
 
 const rootEl = document.getElementById('root');
 if (rootEl) {
@@ -47,6 +62,7 @@ if (rootEl) {
         <MantineProvider theme={theme}>
           <App />
         </MantineProvider>
+        <WithDevtools />
       </PersistQueryClientProvider>
     </React.StrictMode>,
   );
