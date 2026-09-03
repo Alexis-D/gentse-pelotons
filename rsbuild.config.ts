@@ -19,4 +19,15 @@ export default defineConfig({
       },
     ],
   },
+  tools: {
+    rspack: {
+      ignoreWarnings: [
+        {
+          message:
+            /Critical dependency: the request of a dependency is an expression/,
+          module: /maplibre-gl.mjs/,
+        },
+      ],
+    },
+  },
 });
