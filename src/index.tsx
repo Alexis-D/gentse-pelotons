@@ -9,6 +9,7 @@ import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persi
 import { QueryClient } from '@tanstack/react-query';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { Protocol } from 'pmtiles';
+import { createBrowserRouter, RouterProvider } from 'react-router';
 
 // map init
 const protocol = new Protocol();
@@ -48,6 +49,14 @@ const WithDevtools = () => {
   );
 };
 
+// react router init
+const router = createBrowserRouter([
+  {
+    path: '/:lang?',
+    element: <App />,
+  },
+]);
+
 const rootEl = document.getElementById('root');
 if (rootEl) {
   const root = ReactDOM.createRoot(rootEl);
@@ -60,7 +69,7 @@ if (rootEl) {
         }}
       >
         <MantineProvider theme={theme}>
-          <App />
+          <RouterProvider router={router} />
         </MantineProvider>
         <WithDevtools />
       </PersistQueryClientProvider>

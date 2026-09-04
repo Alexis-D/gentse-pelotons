@@ -7,6 +7,7 @@ import {
   Alert,
   Group,
   List,
+  SegmentedControl,
   SimpleGrid,
   Space,
   Text,
@@ -15,6 +16,7 @@ import {
 import { ArrowFatRightIcon, PersonSimpleBikeIcon } from '@phosphor-icons/react';
 import { getParser } from 'bowser';
 import type { ComponentProps } from 'react';
+import { Navigate, useNavigate, useParams } from 'react-router';
 import { useLocalStorage } from 'usehooks-ts';
 import {
   Club9000Saturday,
@@ -40,6 +42,8 @@ const CustomAccordionPanel = ({ children, ...props }: AccordionPanelProps) => (
 );
 
 const App = () => {
+  const { lang } = useParams<{ lang?: string }>();
+  const navigate = useNavigate();
   const [opened, setOpened] = useLocalStorage('info-box-opened', true);
   const today = getBelgiumDay();
 
@@ -53,9 +57,24 @@ const App = () => {
     keepMountedMode: 'display-none',
   } as const;
 
+  console.log(lang);
+  if (lang !== 'en' && lang !== 'nl') {
+    return <Navigate to="/en" replace />;
+  }
+
   return (
     <div className={styles.main}>
-      <Title order={1}>Regular Ghent Pelotons / Group rides 🚴🚴‍♀️</Title>
+      <Group justify="space-between">
+        <Title order={1}>Regular Ghent Pelotons / Group rides 🚴🚴‍♀️</Title>
+        <SegmentedControl
+          defaultValue={lang}
+          onChange={(newlang) => navigate(`/${newlang}`)}
+          data={[
+            { label: '🇬🇧 en', value: 'en' },
+            { label: '🇳🇱 nl', value: 'nl' },
+          ]}
+        />
+      </Group>
       <Space h="lg" />
       {opened && (
         <>
