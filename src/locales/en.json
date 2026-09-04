@@ -1,0 +1,18 @@
+{
+  "check-strava": "Check the Strava events",
+  "drop": "This is a drop ride: you can join anywhere, and no-one will wait if you get a mechanical/etc.",
+  "footer": "If anything is incorrect, or you have more data/group rides to contribute, feel free to open an issue on",
+  "friday": "Friday",
+  "monday": "Monday",
+  "other": "Other",
+  "samenuit": "Samen uit, samen thuis: this is a no-drop ride, we wait for each other.",
+  "saturday": "Saturday",
+  "speed": "Indicative speed",
+  "speed-disclaimer": "this varies depending on attendance, weather, etc",
+  "sunday": "Sunday",
+  "thursday": "Thursday",
+  "title": "Regular Ghent Pelotons / Group rides \ud83d\udeb4\ud83d\udeb4\u200d\u2640\ufe0f",
+  "tuesday": "Tuesday",
+  "various-groups": "various groups",
+  "wednesday": "Wednesday"
+}

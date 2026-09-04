@@ -7,14 +7,17 @@ import {
   Alert,
   Group,
   List,
+  SegmentedControl,
   SimpleGrid,
   Space,
   Text,
   Title,
+  Tooltip,
 } from '@mantine/core';
 import { ArrowFatRightIcon, PersonSimpleBikeIcon } from '@phosphor-icons/react';
 import { getParser } from 'bowser';
-import type { ComponentProps } from 'react';
+import { type ComponentProps, useEffect } from 'react';
+import { Navigate, useNavigate, useParams } from 'react-router';
 import { useLocalStorage } from 'usehooks-ts';
 import {
   Club9000Saturday,
@@ -30,6 +33,8 @@ import { VDH } from './pelotons/VDH';
 import { VPeloton } from './pelotons/VPeloton';
 import { Facebook, Github, Strava, Website } from './ui/socials';
 import { getBelgiumDay } from './utils';
+import './i18n';
+import { useTranslation } from 'react-i18next';
 
 type AccordionPanelProps = ComponentProps<typeof Accordion.Panel>;
 
@@ -40,7 +45,19 @@ const CustomAccordionPanel = ({ children, ...props }: AccordionPanelProps) => (
 );
 
 const App = () => {
+  const { lang } = useParams<{ lang?: string }>();
+  const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
+
   const [opened, setOpened] = useLocalStorage('info-box-opened', true);
+  useEffect(() => {
+    i18n.changeLanguage(lang);
+  }, [lang, i18n]);
+
+  if (lang !== 'en' && lang !== 'nl') {
+    return <Navigate to="/en" replace />;
+  }
+
   const today = getBelgiumDay();
 
   const parser = getParser(window.navigator.userAgent);
@@ -55,7 +72,24 @@ const App = () => {
 
   return (
     <div className={styles.main}>
-      <Title order={1}>Regular Ghent Pelotons / Group rides 🚴🚴‍♀️</Title>
+      <Group justify="space-between">
+        <Title order={1}>{t('title')}</Title>
+        <SegmentedControl
+          defaultValue={lang}
+          onChange={(newlang) => navigate(`/${newlang}`)}
+          data={[
+            { label: '🇬🇧 en', value: 'en' },
+            {
+              label: (
+                <Tooltip label="This is more of a demo/WIP than anything else">
+                  <Text>🇳🇱 nl</Text>
+                </Tooltip>
+              ),
+              value: 'nl',
+            },
+          ]}
+        />
+      </Group>
       <Space h="lg" />
       {opened && (
         <>
@@ -85,7 +119,7 @@ const App = () => {
       <Accordion defaultValue={today} {...accordionProps}>
         <Accordion.Item value="Monday">
           <Accordion.Control icon={today === 'Monday' && <ArrowFatRightIcon />}>
-            Monday
+            {t('monday')}
           </Accordion.Control>
           <CustomAccordionPanel>
             <ScheldePelotonWeekdays />
@@ -96,7 +130,7 @@ const App = () => {
           <Accordion.Control
             icon={today === 'Tuesday' && <ArrowFatRightIcon />}
           >
-            Tuesday
+            {t('tuesday')}
           </Accordion.Control>
           <CustomAccordionPanel>
             <ScheldePelotonWeekdays />
@@ -107,7 +141,7 @@ const App = () => {
           <Accordion.Control
             icon={today === 'Wednesday' && <ArrowFatRightIcon />}
           >
-            Wednesday
+            {t('wednesday')}
           </Accordion.Control>
           <CustomAccordionPanel>
             <Club9000Wednesday />
@@ -121,7 +155,7 @@ const App = () => {
           <Accordion.Control
             icon={today === 'Thursday' && <ArrowFatRightIcon />}
           >
-            Thursday
+            {t('thursday')}
           </Accordion.Control>
           <CustomAccordionPanel>
             <ScheldePelotonWeekdays />
@@ -131,7 +165,7 @@ const App = () => {
         </Accordion.Item>
         <Accordion.Item value="Friday">
           <Accordion.Control icon={today === 'Friday' && <ArrowFatRightIcon />}>
-            Friday
+            {t('friday')}
           </Accordion.Control>
           <CustomAccordionPanel>
             <ScheldePelotonWeekdays />
@@ -142,7 +176,7 @@ const App = () => {
           <Accordion.Control
             icon={today === 'Saturday' && <ArrowFatRightIcon />}
           >
-            Saturday
+            {t('saturday')}
           </Accordion.Control>
           <CustomAccordionPanel>
             <ScheldePelotonWeekend />
@@ -152,7 +186,7 @@ const App = () => {
         </Accordion.Item>
         <Accordion.Item value="Sunday">
           <Accordion.Control icon={today === 'Sunday' && <ArrowFatRightIcon />}>
-            Sunday
+            {t('sunday')}
           </Accordion.Control>
           <CustomAccordionPanel>
             <ScheldePelotonWeekend />
@@ -160,7 +194,7 @@ const App = () => {
           </CustomAccordionPanel>
         </Accordion.Item>
         <Accordion.Item value="Other">
-          <Accordion.Control>Other</Accordion.Control>
+          <Accordion.Control>{t('other')}</Accordion.Control>
           <Accordion.Panel>
             Other relevant groups rides are around but they aren't as regular
             (or I don't have enough info!):
@@ -193,8 +227,7 @@ const App = () => {
         </Accordion.Item>
       </Accordion>
       <Space h="lg" />
-      If anything is incorrect, or you have more data/group rides to contribute,
-      feel free to open an issue on{' '}
+      {t('footer')}{' '}
       <Github
         href="https://github.com/Alexis-D/gentse-pelotons/issues"
         text="Alexis-D/gentse-pelotons"
