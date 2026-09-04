@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { MapMarkersThumbnail } from '../ui/maps';
 import { Thumbnail, Thumbnails } from '../ui/Thumbnails';
 import {
@@ -58,41 +59,49 @@ export const Club9000Wednesday = () => (
   />
 );
 
-export const Club9000Thursday = () => (
-  <Club9000
-    starts={
-      <Starts>
-        <Start
-          time="7PM"
-          location="Kaffee Allez"
-          locationhref={CLUB9000_START}
-        />
-      </Starts>
-    }
-    gpx={<GPX text="Check the Strava events" />}
-    speed="27-35+kph, various groups"
-  />
-);
+export const Club9000Thursday = () => {
+  const { t } = useTranslation();
 
-export const Club9000Saturday = () => (
-  <Club9000
-    starts={
-      <Starts>
-        <Start
-          time="9AM"
-          location="Kaffee Allez"
-          locationhref={CLUB9000_START}
-          extra="Summer"
-        />
-        <Start
-          time="10AM"
-          location="Kaffee Allez"
-          locationhref={CLUB9000_START}
-          extra="Winter"
-        />
-      </Starts>
-    }
-    gpx={<GPX text="Check the Strava events" />}
-    speed="27-32+kph, various groups"
-  />
-);
+  return (
+    <Club9000
+      starts={
+        <Starts>
+          <Start
+            time="7PM"
+            location="Kaffee Allez"
+            locationhref={CLUB9000_START}
+          />
+        </Starts>
+      }
+      gpx={<GPX text={t('check-strava')} />}
+      speed={`27-35+kph, ${t('various-groups')}`}
+    />
+  );
+};
+
+export const Club9000Saturday = () => {
+  const { t } = useTranslation();
+
+  return (
+    <Club9000
+      starts={
+        <Starts>
+          <Start
+            time="9AM"
+            location="Kaffee Allez"
+            locationhref={CLUB9000_START}
+            extra="Summer"
+          />
+          <Start
+            time="10AM"
+            location="Kaffee Allez"
+            locationhref={CLUB9000_START}
+            extra="Winter"
+          />
+        </Starts>
+      }
+      gpx={<GPX text="Check the Strava events" />}
+      speed={`27-32+kph, ${t('various-groups')}`}
+    />
+  );
+};
