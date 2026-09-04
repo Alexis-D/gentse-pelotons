@@ -4,6 +4,7 @@ import '@mantine/core/styles.css';
 
 import {
   Accordion,
+  Grid,
   Group,
   List,
   SimpleGrid,
@@ -55,10 +56,18 @@ export const App = () => {
 
   return (
     <div className={styles.main}>
-      <Group justify="space-between">
-        <Title order={1}>{t('title')}</Title>
-        <LangSwitcher />
-      </Group>
+      <Grid>
+        <Grid.Col span={{ base: 12, sm: 10 }} order={{ base: 1, sm: 0 }}>
+          <Title order={1}>{t('title')}</Title>
+        </Grid.Col>
+        <Grid.Col
+          span={{ base: 12, sm: 2 }}
+          style={{ textAlign: 'right' }}
+          order={{ base: 0, sm: 1 }}
+        >
+          <LangSwitcher />
+        </Grid.Col>
+      </Grid>
       <Space h="lg" />
       <Infobox />
       <Accordion defaultValue={today} {...accordionProps}>
