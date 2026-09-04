@@ -13,7 +13,6 @@ import {
 import { ClockIcon, MapPinIcon, WarningIcon } from '@phosphor-icons/react';
 import type { ReactNode } from 'react';
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import {
   Facebook,
   GPXSocial,
@@ -58,8 +57,6 @@ export const SimplePeloton = ({
   insta,
   website,
 }: ISimplePeloton) => {
-  const { t } = useTranslation();
-
   return (
     <Card shadow="xl" withBorder mb="1rem" pt={0}>
       {thumbnails}
@@ -80,12 +77,12 @@ export const SimplePeloton = ({
       )}
       {starts}
       <Text size="sm">
-        {t('speed')}:{' '}
+        Indicative speed:{' '}
         <Text span fw={800}>
           {speed}{' '}
         </Text>
         <Text span fs="italic">
-          ({t('speed-disclaimer')})
+          (this varies depending on attendance, weather, etc)
         </Text>
       </Text>
       {extraDetails && <Text size="sm">{extraDetails}</Text>}
@@ -102,7 +99,8 @@ export const SimplePeloton = ({
         <>
           <Space h="xs" />
           <Text size="xs" fs="italic">
-            {t('drop')}
+            This is a drop ride: you can join anywhere, and no-one will wait if
+            you get a mechanical/etc.
           </Text>
         </>
       )}
@@ -110,7 +108,8 @@ export const SimplePeloton = ({
         <>
           <Space h="xs" />
           <Highlight highlight="Samen uit, samen thuis" fs="italic" size="xs">
-            {t('samenuit')}
+            Samen uit, samen thuis: this is a no-drop ride, we wait for each
+            other.
           </Highlight>
         </>
       )}
