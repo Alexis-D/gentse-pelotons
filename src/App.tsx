@@ -4,21 +4,16 @@ import '@mantine/core/styles.css';
 
 import {
   Accordion,
-  Alert,
   Group,
   List,
-  SegmentedControl,
   SimpleGrid,
   Space,
-  Text,
   Title,
-  Tooltip,
 } from '@mantine/core';
-import { ArrowFatRightIcon, PersonSimpleBikeIcon } from '@phosphor-icons/react';
+import { ArrowFatRightIcon } from '@phosphor-icons/react';
 import { getParser } from 'bowser';
-import { type ComponentProps, useEffect } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router';
-import { useLocalStorage } from 'usehooks-ts';
+import type { ComponentProps } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   Club9000Saturday,
   Club9000Thursday,
@@ -31,10 +26,10 @@ import {
 } from './pelotons/ScheldePeloton';
 import { VDH } from './pelotons/VDH';
 import { VPeloton } from './pelotons/VPeloton';
+import { Infobox } from './ui/InfoxBox';
+import { LangSwitcher } from './ui/LangSwitcher';
 import { Facebook, Github, Strava, Website } from './ui/socials';
 import { getBelgiumDay } from './utils';
-import './i18n';
-import { useTranslation } from 'react-i18next';
 
 type AccordionPanelProps = ComponentProps<typeof Accordion.Panel>;
 
@@ -44,22 +39,10 @@ const CustomAccordionPanel = ({ children, ...props }: AccordionPanelProps) => (
   </Accordion.Panel>
 );
 
-const App = () => {
-  const { lang } = useParams<{ lang?: string }>();
-  const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
-
-  const [opened, setOpened] = useLocalStorage('info-box-opened', true);
-  useEffect(() => {
-    i18n.changeLanguage(lang);
-  }, [lang, i18n]);
-
-  if (lang !== 'en' && lang !== 'nl') {
-    return <Navigate to="/en" replace />;
-  }
+export const App = () => {
+  const { t } = useTranslation();
 
   const today = getBelgiumDay();
-
   const parser = getParser(window.navigator.userAgent);
   // do not rely on keepMountedMode=activity as it causes issues when changing visibility
   // unmount to avoid 'Too many active WebGL contexts. Oldest context will be lost' on chrome-based/mobile browsers...
@@ -74,48 +57,10 @@ const App = () => {
     <div className={styles.main}>
       <Group justify="space-between">
         <Title order={1}>{t('title')}</Title>
-        <SegmentedControl
-          defaultValue={lang}
-          onChange={(newlang) => navigate(`/${newlang}`)}
-          data={[
-            { label: '🇬🇧 en', value: 'en' },
-            {
-              label: (
-                <Tooltip label="This is more of a demo/WIP than anything else">
-                  <Text>🇳🇱 nl</Text>
-                </Tooltip>
-              ),
-              value: 'nl',
-            },
-          ]}
-        />
+        <LangSwitcher />
       </Group>
       <Space h="lg" />
-      {opened && (
-        <>
-          <Alert
-            variant="light"
-            color="blue"
-            title="Intro"
-            icon={<PersonSimpleBikeIcon />}
-            withCloseButton
-            onClose={() => setOpened(false)}
-          >
-            <Text>
-              Just moved to Ghent? Travelling for a bit? If you're looking for a
-              group ride, this page tries to list the reliable rides that you
-              can easily join any day of the week: no club membership needed,
-              show up at the right time and place and ride along.
-            </Text>
-            <Text>
-              Pro-tip: 'tegen' (against) when there's oncoming traffic, 'voor'
-              (in front/ahead) when there's something to overtake (pedestrian,
-              slower cyclist, ...), and 'paaltje(s)' (bollards).
-            </Text>
-          </Alert>
-          <Space h="lg" />
-        </>
-      )}
+      <Infobox />
       <Accordion defaultValue={today} {...accordionProps}>
         <Accordion.Item value="Monday">
           <Accordion.Control icon={today === 'Monday' && <ArrowFatRightIcon />}>
@@ -237,5 +182,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;

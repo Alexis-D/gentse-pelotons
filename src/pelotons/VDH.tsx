@@ -1,5 +1,6 @@
 import { MapMarkersThumbnail } from '../ui/maps';
 import { Thumbnail, Thumbnails } from '../ui/Thumbnails';
+import { getAssetUrl } from '../utils';
 import { GPX, SimplePeloton, Start, Starts } from './SimplePeloton';
 
 const SAFTI = 'https://maps.app.goo.gl/iBCAvPxkjpd79PA87';
@@ -26,7 +27,10 @@ export const VDH = () => (
             },
           ]}
         />
-        <Thumbnail src="vdh-logo.jpg" href="https://wtctonneke.be/gpx-wtd/" />
+        <Thumbnail
+          src={getAssetUrl('vdh-logo.jpg')}
+          href="https://wtctonneke.be/gpx-wtd/"
+        />
       </Thumbnails>
     }
     starts={

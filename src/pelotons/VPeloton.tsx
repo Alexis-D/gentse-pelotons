@@ -1,5 +1,6 @@
 import { MapThumbnail } from '../ui/maps';
 import { Thumbnail, Thumbnails } from '../ui/Thumbnails';
+import { getAssetUrl } from '../utils';
 import { GPX, SimplePeloton, Start, Starts } from './SimplePeloton';
 
 const VP_START = 'https://maps.app.goo.gl/aVgTHNEhphtysEV38';
@@ -11,13 +12,13 @@ export const VPeloton = () => (
       <Thumbnails>
         {/* lat/lon = Nevele, not Bierstalbrug */}
         <MapThumbnail
-          gpx="vp.gpx"
+          gpx={getAssetUrl('vp.gpx')}
           lat={51.03243491123266}
           lon={3.5513476908204686}
           label="Bierstalbrug"
           href={VP_START}
         />
-        <Thumbnail src="bierstalbrug.jpg" href={VP_START} />
+        <Thumbnail src={getAssetUrl('bierstalbrug.jpg')} href={VP_START} />
       </Thumbnails>
     }
     starts={
@@ -29,7 +30,7 @@ export const VPeloton = () => (
         />
       </Starts>
     }
-    gpx={<GPX text="GPX" href="vp.gpx" />}
+    gpx={<GPX text="GPX" href={getAssetUrl('vp.gpx')} />}
     drop
     speed="35+kph"
     extraDetails="ca. 50km. Just like the Scheldepeloton, grows organically until the midpoint."

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { MapMarkersThumbnail } from '../ui/maps';
 import { Thumbnail, Thumbnails } from '../ui/Thumbnails';
+import { getAssetUrl } from '../utils';
 import {
   GPX,
   type ISimplePeloton,
@@ -26,7 +27,10 @@ const Club9000 = (props: Pick<ISimplePeloton, 'starts' | 'gpx' | 'speed'>) => (
             },
           ]}
         />
-        <Thumbnail src="club9000-logo.webp" href="https://www.club9000.be/" />
+        <Thumbnail
+          src={getAssetUrl('club9000-logo.webp')}
+          href="https://www.club9000.be/"
+        />
       </Thumbnails>
     }
     strava="https://www.strava.com/clubs/club9000"

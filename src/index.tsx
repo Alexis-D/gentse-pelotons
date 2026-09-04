@@ -3,13 +3,14 @@ import { createTheme, MantineProvider } from '@mantine/core';
 import { addProtocol, setWorkerUrl } from 'maplibre-gl';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister';
 import { QueryClient } from '@tanstack/react-query';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { Protocol } from 'pmtiles';
 import { createBrowserRouter, RouterProvider } from 'react-router';
+import { I18nApp } from './I18nApp';
+import { i18nInit } from './i18n';
 
 // map init
 const protocol = new Protocol();
@@ -49,13 +50,25 @@ const WithDevtools = () => {
   );
 };
 
+// i18n init
+i18nInit();
+
 // react router init
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: '/:lang?',
+      element: <I18nApp />,
+    },
+    {
+      path: '/:lang?/',
+      element: <I18nApp />,
+    },
+  ],
   {
-    path: '/:lang?',
-    element: <App />,
+    basename: '/gentse-pelotons',
   },
-]);
+);
 
 const rootEl = document.getElementById('root');
 if (rootEl) {

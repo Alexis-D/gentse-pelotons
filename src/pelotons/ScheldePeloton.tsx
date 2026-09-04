@@ -1,5 +1,6 @@
 import { MapMarkersThumbnail, MapThumbnail } from '../ui/maps';
 import { Thumbnails } from '../ui/Thumbnails';
+import { getAssetUrl } from '../utils';
 import {
   GPX,
   type ISimplePeloton,
@@ -33,7 +34,7 @@ export const ScheldePelotonWeekdays = () => (
       <Thumbnails>
         {/* lat/lon = Gavere, not Zwijnaarde */}
         <MapThumbnail
-          gpx="sp.gpx"
+          gpx={getAssetUrl('sp.gpx')}
           lat={50.9299510444054}
           lon={3.6525768763541384}
           href={SP_START}
@@ -50,7 +51,7 @@ export const ScheldePelotonWeekdays = () => (
         />
       </Starts>
     }
-    gpx={<GPX text="GPX" href="sp.gpx" />}
+    gpx={<GPX text="GPX" href={getAssetUrl('sp.gpx')} />}
     extraDetails={`From Zwijnaarde down to Eine and back to Zwijnaarde.
       Usually 2x (ca. 80km). You might be (almost) alone in Zwijnaarde but by the time you
       get to Eine the peloton will have likely grown to 50+ people (in the summer, way fewer in the winter)`}
